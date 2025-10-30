@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد مهدي الجواهري - شاعر العرب الأكبر</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* تنسيقات CSS مخصصة لصفحة النبذة */
+        .profile-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px double var(--light-accent);
+            margin-bottom: 30px;
+        }
+        .profile-header h1 {
+            font-size: 2.8em;
+            color: var(--light-accent);
+        }
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-text);
+        }
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap; /* للسماح بالالتفاف في الشاشات الصغيرة */
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .profile-image-container {
+            flex: 0 0 300px; /* عرض ثابت للصورة */
+            padding: 15px;
+            border: 5px solid var(--light-accent);
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.1); /* ظل تاريخي */
+        }
+        .dark-mode .profile-image-container {
+            border-color: var(--dark-accent);
+            background: rgba(0,0,0,0.3);
+            box-shadow: 8px 8px 0px 0px rgba(255,255,255,0.1);
+        }
+        .profile-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .profile-details {
+            flex-grow: 1;
+            padding-top: 10px;
+        }
+        .profile-details h3 {
+            color: var(--light-accent);
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .dark-mode .profile-details h3 {
+            color: var(--dark-accent);
+            border-bottom-color: var(--dark-border);
+        }
+        .profile-details p, .profile-details ul {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .profile-details ul {
+            list-style: disc inside;
+            padding-left: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--light-accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .dark-mode .back-link {
+            color: var(--dark-accent);
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* استجابة للتصميم (Responsive design) */
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column; /* جعل العناصر تتكدس عمودياً */
+                align-items: center;
+            }
+            .profile-image-container {
+                flex: none; /* إزالة العرض الثابت للسماح بالتكيف */
+                width: 80%; /* عرض نسبي للصورة */
+            }
+        }
+    </style>
+</head>
+<body id="scholar-profile-page" class="light-mode">
+    
+    <nav class="top-nav">
+        <h1 class="logo-title">🏛️ سجل المؤثرين الخالدين</h1>
+        <div class="nav-controls">
+            <a href="../../index.html" class="nav-icon"><i class="fas fa-home"></i></a>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <a href="../arab_writers.html" class="back-link">← العودة لقسم أدباء وشعراء عرب</a>
+        
+        <header class="profile-header">
+            <h1 id="scholar-name">محمد مهدي الجواهري</h1>
+            <p id="scholar-era">شاعر العروبة وشاعر العرب الأكبر</p>
+            <p class="era-tag"> (1900 - 1997)</p>
+        </header>
+
+        <section class="profile-content">
+            
+            <div class="profile-image-container">
+                <img id="scholar-image" src="../../images/al_joahire.jpg" alt="صورة الجواهري" class="profile-image">
+            </div>
+            
+            <div class="profile-details">
+                <h3>مولده ونشأته</h3>
+                <p>
+                    وُلد محمد مهدي بن عبد الحسين الجواهري في النجف بالعراق عام 1900 لعائلة عريقة معروفة بالتدين والاهتمام بالعلم والأدب، حيث كان والده عالماً دينياً معروفاً. نشأ في بيئة تحتفي باللغة العربية والشعر، مما كان له أثر كبير في صقل موهبته الشعرية منذ صغره. درس الفقه والنحو والصرف والبلاغة على يد كبار علماء النجف، وهو ما منحه أساساً لغوياً متيناً.
+                </p>
+                
+                <h3>مسيرته المهنية والسياسية</h3>
+                <p>
+                    بدأ الجواهري حياته المهنية بالتدريس، ثم اتجه إلى الصحافة، حيث أصدر عدداً من الصحف والمجلات منها "الفرات" و"الانقلاب" و"الرأي العام". كانت هذه المنابر وسيلة له للتعبير عن آرائه السياسية والاجتماعية التي كانت تتسم بالشجاعة والجرأة، مما عرضه للاضطهاد والسجن مرات عدة. انتخب نائباً في البرلمان العراقي في أربعينيات القرن الماضي، لكنه لم يلتزم بسياسات الحكومة، بل ظل صوت الشعب والقضايا الوطنية.
+                </p>
+
+                <h3>شعره ومكانته الأدبية</h3>
+                <p>
+                    يُعد الجواهري من أبرز شعراء العمود العربي الحديث، وامتاز شعره بقوة الأسلوب، وجزالة الألفاظ، ومتانة السبك، وغزارة المعاني. غنى في شعره للوطن والعروبة، ودافع عن القضايا القومية، وأشاد بالحرية والعدالة، كما تناول موضوعات الغزل والرثاء والحكمة. لقب بـ "شاعر العرب الأكبر" لضخامة إنتاجه الشعري وغنى تجربته، وقدرته الفائقة على تطويع اللغة لخدمة أغراضه الفنية والفكرية.
+                </p>
+                
+                <h3>المنفى والرحيل</h3>
+                <p>
+                    بسبب مواقفه السياسية المعارضة، اضطر الجواهري لمغادرة العراق في مراحل مختلفة من حياته، وتنقل بين عدة عواصم عربية وأجنبية، واستقر به المقام أخيراً في دمشق بسوريا. هناك واصل عطاءه الشعري والأدبي حتى وافته المنية في 27 يوليو 1997، عن عمر ناهز 97 عاماً، ودُفن في دمشق تاركاً إرثاً شعرياً خالداً.
+                </p>
+
+                <h3>أبرز أعماله (دواوين شعرية)</h3>
+                <ul id="scholar-achievements">
+                    <li>ديوان الجواهري (عدة أجزاء)</li>
+                    <li>بريد الغربة</li>
+                    <li>تنويمة الجائع</li>
+                    <li>إلى المتنبي</li>
+                    <li>يا دجلة الخير</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع مفتوح المصدر على GitHub</p>
+    </footer>
+
+    <script src="../../scripts/script.js"></script>
+</body>
+</html>
