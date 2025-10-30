@@ -1,0 +1,22 @@
+{
+  "arab_scientists": [
+    {
+      "id": "alkhwarizmi",
+      "name": "الخوارزمي",
+      "bio": "عالم رياضيات وفلكي، مؤسس علم الجبر...",
+      "era": "العباسي",
+      "image": "al_khwarizmi.jpg"
+    }
+  ],
+  "arab_writers": [
+    {
+      "id": "almutanabbi",
+      "name": "المتنبي",
+      "bio": "أعظم شعراء العربية، شاعر الحكمة والفخر...",
+      "era": "العباسي",
+      "image": "al_mutanabbi.jpg"
+    }
+  ],
+  "foreign_scientists": [],
+  "foreign_writers": []
+}
