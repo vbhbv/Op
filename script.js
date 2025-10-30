@@ -1,36 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('mode-toggle');
     const body = document.body;
+    const searchButton = document.getElementById('search-btn');
+    const searchBar = document.getElementById('search-bar');
+    const searchInput = document.getElementById('search-input');
 
-    // 1. التحقق من الوضع المحفوظ في المتصفح (localStorage)
+    // 1. إدارة الوضع الليلي/النهاري
     const savedMode = localStorage.getItem('mode') || 'light-mode';
     body.className = savedMode;
-    updateButtonText(savedMode);
+    updateModeIcon(savedMode);
 
-    // 2. وظيفة لتحديث نص الزر حسب الوضع الحالي
-    function updateButtonText(currentMode) {
+    function updateModeIcon(currentMode) {
         if (currentMode === 'dark-mode') {
-            toggleButton.innerHTML = 'تبديل الوضع (☀️)';
+            toggleButton.innerHTML = '<i class="fas fa-sun"></i>'; // شمس للوضع النهاري
         } else {
-            toggleButton.innerHTML = 'تبديل الوضع (🌙)';
+            toggleButton.innerHTML = '<i class="fas fa-moon"></i>'; // قمر للوضع الليلي
         }
     }
 
-    // 3. مستمع حدث النقر على الزر
     toggleButton.addEventListener('click', () => {
-        // إذا كان الوضع الحالي نهاري (light-mode)، فقم بالتحويل إلى ليلي (dark-mode)
         if (body.classList.contains('light-mode')) {
             body.classList.replace('light-mode', 'dark-mode');
             localStorage.setItem('mode', 'dark-mode');
-            updateButtonText('dark-mode');
+            updateModeIcon('dark-mode');
         } else {
-            // وإلا، حول إلى نهاري
             body.classList.replace('dark-mode', 'light-mode');
             localStorage.setItem('mode', 'light-mode');
-            updateButtonText('light-mode');
+            updateModeIcon('light-mode');
         }
     });
 
-    // تحديث السنة في التذييل تلقائيًا
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // 2. إدارة أيقونة البحث
+    searchButton.addEventListener('click', () => {
+        searchBar.classList.toggle('hidden');
+        if (!searchBar.classList.contains('hidden')) {
+            searchInput.focus(); // تركيز المؤشر في مربع البحث عند فتحه
+        }
+    });
+
+    // يمكنك إضافة وظيفة البحث الفعلية هنا (مثال: توجيه المستخدم لصفحة بحث)
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+            // مثال على التوجيه لصفحة بحث (يجب عليك إنشاء صفحة search_results.html)
+            // window.location.href = `search_results.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+            console.log("البحث عن:", searchInput.value.trim());
+            // يمكن هنا إضافة ميزة بحث فورية لاحقا (Live Search)
+        }
+    });
 });
