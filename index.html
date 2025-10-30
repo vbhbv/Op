@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أرشيف البصمات العلمية والأدبية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Marhey&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <header class="page-header">
+        <h1 class="page-title">مكتبة المؤثرين الخالدين</h1>
+        <button id="mode-toggle" class="mode-toggle-btn">تبديل الوضع (🌙)</button>
+    </header>
+
+    <nav class="sidebar-nav">
+        <h2>أقسام الأرشيف</h2>
+        <ul>
+            <li><a href="#arab-scientists">علماء عرب</a></li>
+            <li><a href="#arab-writers">أدباء وشعراء عرب</a></li>
+            <li><a href="#foreign-scientists">علماء أجانب</a></li>
+            <li><a href="#foreign-writers">أدباء وشعراء أجانب</a></li>
+            <li><a href="#featured">نجوم الأرشيف</a></li>
+        </ul>
+    </nav>
+
+    <main class="archive-content">
+        <section id="arab-scientists" class="archive-section">
+            <h2 class="section-title">📜 علماء من العروبة 📜</h2>
+            <div class="card-container">
+                <a href="al-khwarizmi.html" class="person-card">
+                    <img src="images/al-khwarizmi.jpg" alt="صورة الخوارزمي" class="person-image">
+                    <h3 class="person-name">الخوارزمي</h3>
+                    <p class="person-snippet">أبو الرياضيات والجبر، مؤسس الخوارزميات.</p>
+                </a>
+                </div>
+        </section>
+
+        <section id="arab-writers" class="archive-section">
+            <h2 class="section-title">🖋️ بلاغة وفصاحة عربية 🖋️</h2>
+            <div class="card-container">
+                <a href="al-mutanabbi.html" class="person-card">
+                    <img src="images/al-mutanabbi.jpg" alt="صورة المتنبي" class="person-image">
+                    <h3 class="person-name">المتنبي</h3>
+                    <p class="person-snippet">شاعر الحكمة والفخر، أعظم شعراء العربية.</p>
+                </a>
+            </div>
+        </section>
+
+        </main>
+
+    <footer class="page-footer">
+        <p>حقوق الأرشيف محفوظة © <span id="year">2024</span> | مشروع GitHub</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
