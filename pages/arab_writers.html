@@ -3,9 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أدباء وشعراء عرب - سجل المؤثرين</title>
+    <title>أدباء وشعراء عرب - روائع الكلمة</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================= */
+        /* ====== تنسيقات خاصة بصفحة الأدباء (override main.css) ====== */
+        /* ============================================================= */
+        body {
+            font-family: 'Amiri', serif; /* خط أساسي جميل للصفحة */
+        }
+        .section-heading {
+            font-family: 'Scheherazade New', serif; /* خط مميز للعناوين الرئيسية */
+            font-size: 3.5em; /* حجم أكبر للعنوان */
+            color: var(--light-accent); /* لون مميز */
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .dark-mode .section-heading {
+            color: var(--dark-accent);
+        }
+        .section-description {
+            font-size: 1.2em;
+            color: var(--light-text);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.8;
+        }
+        .dark-mode .section-description {
+            color: var(--dark-text);
+        }
+
+        /* تنسيق بطاقات الشخصيات بشكل عام */
+        .scholar-card {
+            background-color: #ffffff;
+            border: 1px solid var(--light-border);
+            border-radius: 12px; /* زوايا أكثر استدارة */
+            box-shadow: 8px 8px 0px 0px var(--light-accent); /* ظل أعمق */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            text-decoration: none; /* إزالة خطوط الروابط */
+            color: var(--light-text);
+            position: relative; /* لتحديد مكان الشارة */
+            overflow: hidden; /* لإخفاء أي جزء زائد من الصورة */
+        }
+        .dark-mode .scholar-card {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            box-shadow: 8px 8px 0px 0px var(--dark-accent);
+            color: var(--dark-text);
+        }
+        .scholar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 0px 0px var(--light-accent);
+        }
+        .dark-mode .scholar-card:hover {
+            box-shadow: 12px 12px 0px 0px var(--dark-accent);
+        }
+
+        .scholar-image {
+            width: 150px; /* حجم صورة دائري محدد */
+            height: 150px;
+            border-radius: 50%; /* لجعل الصورة دائرية */
+            object-fit: cover; /* لتناسب الصورة الدائرية */
+            border: 4px solid var(--light-accent); /* إطار حول الصورة */
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+        .dark-mode .scholar-image {
+            border-color: var(--dark-accent);
+        }
+        .scholar-card:hover .scholar-image {
+            border-color: #a0522d; /* لون جديد عند التحويم */
+        }
+        .dark-mode .scholar-card:hover .scholar-image {
+            border-color: #ffd700;
+        }
+
+        .scholar-name {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.8em;
+            color: var(--light-accent);
+            margin-bottom: 8px;
+        }
+        .dark-mode .scholar-name {
+            color: var(--dark-accent);
+        }
+        .scholar-bio-snippet {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .dark-mode .scholar-bio-snippet {
+            color: #ccc;
+        }
+        .era-tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-family: 'Cairo', sans-serif; /* خط مختلف للتاجات */
+        }
+        .dark-mode .era-tag {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+
+        /* ============================================================= */
+        /* ====== تنسيق خاص ببطاقة الجواهري (الأبيض والأسود) ====== */
+        /* ============================================================= */
+        .joahire-card .scholar-image {
+            filter: grayscale(100%) contrast(1.1); /* تأثير أبيض وأسود مع تباين */
+            border-color: #333; /* إطار أسود */
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .dark-mode .joahire-card .scholar-image {
+            filter: grayscale(100%) contrast(1.1) brightness(0.8);
+            border-color: #e0e0e0;
+        }
+        .joahire-card .scholar-name {
+            color: #333;
+            font-size: 2em; /* حجم أكبر قليلاً لاسمه */
+        }
+        .dark-mode .joahire-card .scholar-name {
+            color: #f0f0f0;
+        }
+        .joahire-card .era-tag {
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+            border: 1px solid #fff; /* حدود بيضاء لتبرز في الأسود */
+        }
+        .dark-mode .joahire-card .era-tag {
+            background-color: #f0f0f0;
+            color: #333;
+            border-color: #333;
+        }
+        /* شارة "نجم الأرشيف" */
+        .joahire-card::before {
+            content: 'نجم الأرشيف ✨';
+            position: absolute;
+            top: 15px;
+            right: -30px; /* ابدأ من الخارج */
+            background-color: #d4af37; /* ذهبي */
+            color: white;
+            padding: 5px 35px;
+            font-size: 0.8em;
+            font-weight: bold;
+            transform: rotate(45deg); /* دوران للمظهر الجمالي */
+            transform-origin: top left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: 'Cairo', sans-serif;
+            z-index: 10;
+        }
+
+        /* ============================================================= */
+        /* ====== تعديلات الشريط العلوي والتذييل إذا لزم الأمر ====== */
+        /* ============================================================= */
+        .top-nav {
+            background-color: #4a2c00; /* بني داكن جداً */
+            border-bottom-color: #8b4513;
+        }
+        .dark-mode .top-nav {
+            background-color: #1a1a1a;
+            border-bottom-color: #b8860b;
+        }
+        .page-footer {
+            background-color: #4a2c00;
+            color: #f4e8d8;
+        }
+        .dark-mode .page-footer {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        /* ============================================================= */
+        /* ====== تنسيقات الشبكة (Grid) ====== */
+        /* ============================================================= */
+        .archive-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تعديل العرض الأدنى للبطاقات */
+        }
+    </style>
 </head>
 <body id="arab-writers-page" class="light-mode">
     
@@ -18,22 +206,26 @@
     </nav>
     
     <main class="main-container">
-        <h2 class="section-heading">أدباء وشعراء عرب ✒️</h2>
-        <p class="section-description">مخطوطات كبار الأدباء والشعراء العرب الذين أثروا في اللغة والأدب.</p>
+        <header class="page-header-banner">
+            <h2 class="section-heading">أدباء وشعراء عرب</h2>
+            <p class="section-description">
+                غص في بحور الكلمة، واستكشف عوالم الإبداع لأعظم فرسان القلم والشعر في تاريخنا العربي المجيد.
+            </p>
+        </header>
 
-        <div id="scholar-cards-container" class="archive-grid writer-list">
+        <section id="scholar-cards-container" class="archive-grid writer-list">
             
-            <a href="Joahire.html" class="scholar-card">
-                <img src="../images/al_joahire.jpg" alt="صورة محمد مهدي الجواهري" class="scholar-image">
+            <a href="Joahire.html" class="scholar-card joahire-card">
+                <img src="../images/al_joahire_bw.jpg" alt="صورة محمد مهدي الجواهري (أبيض وأسود)" class="scholar-image">
                 <div class="scholar-info">
                     <h4 class="scholar-name">محمد مهدي الجواهري</h4>
-                    <p class="scholar-bio-snippet">حياة الشاعر العراقي الكبير</p>
-                    <span class="era-tag">شاعر العرب الأكبر</span>
+                    <p class="scholar-bio-snippet">شاعر العرب الأكبر، سيد الشعر الحديث.</p>
+                    <span class="era-tag">العصر الحديث</span>
                 </div>
             </a>
             
             <a href="almutanabbi.html" class="scholar-card">
-                <img src="../images/al_mutanabbi.jpg" alt="صورة المتنبي" class="scholar-image">
+                <img src="../images/al_mutanabbi.jpg" alt="صورة أبي الطيب المتنبي" class="scholar-image">
                 <div class="scholar-info">
                     <h4 class="scholar-name">أبو الطيب المتنبي</h4>
                     <p class="scholar-bio-snippet">أعظم شعراء العربية على مر العصور.</p>
@@ -41,7 +233,7 @@
                 </div>
             </a>
             
-            </div>
+            </section>
     </main>
     
     <footer class="page-footer">
