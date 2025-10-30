@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة شخصية</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <a href="/admin" class="back-link">← العودة للوحة التحكم</a>
+        <h1>إضافة شخصية جديدة للأرشيف</h1>
+    </header>
+    
+    <main class="form-container">
+        <form action="/admin/add" method="POST">
+            <label for="section">القسم:</label>
+            <select id="section" name="section" required>
+                <% sections.forEach(sec => { %>
+                    <option value="<%= sec %>"><%= sec.replace('_', ' ') %></option>
+                <% }); %>
+            </select>
+
+            <label for="name">اسم الشخصية:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="bio">النبذة:</label>
+            <textarea id="bio" name="bio" rows="5" required></textarea>
+
+            <label for="era">العصر/الحقبة:</label>
+            <input type="text" id="era" name="era">
+            
+            <label for="image">اسم ملف الصورة (مثال: new_scholar.jpg):</label>
+            <input type="text" id="image" name="image">
+
+            <button type="submit" class="submit-button">حفظ ونشر</button>
+        </form>
+    </main>
+</body>
+</html>
