@@ -183,8 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function createScholarCard(scholar) {
         const card = document.createElement('a');
-        // الرابط يتم بناؤه ليتوافق مع نظام مجلد pages
-        card.href = `pages/${scholar.id}.html`; 
+        
+        // 🚨 تصحيح الرابط: نستخدم scholar.id مباشرة لأنه يحتوي الآن على امتداد .html
+        card.href = `pages/${scholar.id}`; 
+        
         card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
         card.classList.add('scholar-card');
         
