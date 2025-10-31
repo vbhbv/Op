@@ -280,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // 🚨 المسار المطلق لحل مشكلة فشل التحميل في بعض الخوادم
-            const response = await fetch('/data/archive.json', { signal: controller.signal });
+            // 🔄 تم إرجاع المسار إلى المسار النسبي الصحيح الذي كان يعمل سابقاً
+            const response = await fetch('../data/archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
             if (!response.ok) { throw new Error('فشل في تحميل ملف البيانات.'); }
@@ -295,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
              setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
              console.error("Data loading error:", error);
-             // 💡 نصيحة: إذا استمرت المشكلة، حاول تغيير المسار هنا إلى '../data/archive.json' مرة أخرى
         } finally {
             setLoadingState(false);
         }
