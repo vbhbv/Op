@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsCountElement = document.getElementById('results-count'); // الميزة 36
 
     let allScholarsData = []; 
-    // const SCROLLED_CLASS = 'scrolled'; // تم إزالة هذا المتغير وميزته
     const DATA_CACHE_KEY = 'archiveDataCache'; // الميزة 33
     const CACHE_DURATION = 3600000; // الميزة 33: ساعة واحدة
 
@@ -279,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // المسار: يتم الخروج من مجلد scripts/ للوصول إلى data/archive.json
+            // 🔄 تم إرجاع المسار إلى وضعه الأصلي (النسبي)
             const response = await fetch('../data/archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
@@ -357,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // الميزة 12/13/16: زر العودة للأعلى (مع إزالة كلاس scrolled المسبب للتداخل)
+    // الميزة 12/13/16: زر العودة للأعلى (مع إزالة كود الترويسة الثابتة)
     if (backToTopButton) {
         const toggleBackToTop = () => {
              if (window.scrollY > 300) {
@@ -373,16 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('scroll', () => {
-            // ❌ تم إزالة الميزة 16 (إضافة كلاس التمرير/الترويسة الثابتة) لحل مشكلة التداخل في الترويسة
-            /*
-            if (header) {
-                if (window.scrollY > 50) {
-                    header.classList.add(SCROLLED_CLASS);
-                } else {
-                    header.classList.remove(SCROLLED_CLASS);
-                }
-            }
-            */
+            // ❌ تم إزالة ميزة الترويسة الثابتة نهائياً من الـ JS
             toggleBackToTop();
         });
         toggleBackToTop(); // تشغيل عند التحميل
