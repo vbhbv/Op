@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أدباء وشعراء عرب - روائع الكلمة</title>
+    
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         /* ============================================================= */
         /* ====== تنسيقات خاصة بصفحة الأدباء (override main.css) ====== */
         /* ============================================================= */
         body {
-            font-family: 'Amiri', serif; /* خط أساسي جميل للصفحة */
+            font-family: 'Amiri', serif; 
         }
         .section-heading {
-            font-family: 'Scheherazade New', serif; /* خط مميز للعناوين الرئيسية */
-            font-size: 3.5em; /* حجم أكبر للعنوان */
-            color: var(--light-accent); /* لون مميز */
+            font-family: 'Scheherazade New', serif;
+            font-size: 3.5em; 
+            color: var(--light-accent);
             text-align: center;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -41,18 +43,18 @@
         .scholar-card {
             background-color: #ffffff;
             border: 1px solid var(--light-border);
-            border-radius: 12px; /* زوايا أكثر استدارة */
-            box-shadow: 8px 8px 0px 0px var(--light-accent); /* ظل أعمق */
+            border-radius: 12px;
+            box-shadow: 8px 8px 0px 0px var(--light-accent);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             padding: 25px;
-            text-decoration: none; /* إزالة خطوط الروابط */
+            text-decoration: none;
             color: var(--light-text);
-            position: relative; /* لتحديد مكان الشارة */
-            overflow: hidden; /* لإخفاء أي جزء زائد من الصورة */
+            position: relative;
+            overflow: hidden;
         }
         .dark-mode .scholar-card {
             background-color: #2a2a2a;
@@ -69,11 +71,11 @@
         }
 
         .scholar-image {
-            width: 150px; /* حجم صورة دائري محدد */
+            width: 150px; 
             height: 150px;
-            border-radius: 50%; /* لجعل الصورة دائرية */
-            object-fit: cover; /* لتناسب الصورة الدائرية */
-            border: 4px solid var(--light-accent); /* إطار حول الصورة */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--light-accent);
             margin-bottom: 20px;
             transition: border-color 0.3s ease;
         }
@@ -81,7 +83,7 @@
             border-color: var(--dark-accent);
         }
         .scholar-card:hover .scholar-image {
-            border-color: #a0522d; /* لون جديد عند التحويم */
+            border-color: #a0522d;
         }
         .dark-mode .scholar-card:hover .scholar-image {
             border-color: #ffd700;
@@ -112,66 +114,43 @@
             border-radius: 20px;
             font-size: 0.9em;
             margin-top: 10px;
-            font-family: 'Cairo', sans-serif; /* خط مختلف للتاجات */
+            font-family: 'Cairo', sans-serif;
         }
         .dark-mode .era-tag {
             background-color: #3a3a3a;
             color: #e0e0e0;
         }
 
-        /* ============================================================= */
-        /* ====== تنسيق خاص ببطاقة الجواهري (الأبيض والأسود) ====== */
-        /* ============================================================= */
+        /* تنسيق خاص ببطاقة الجواهري (الأبيض والأسود) */
         .joahire-card .scholar-image {
-            filter: grayscale(100%) contrast(1.1); /* تأثير أبيض وأسود مع تباين */
-            border-color: #333; /* إطار أسود */
+            filter: grayscale(100%) contrast(1.1);
+            border-color: #333;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
         }
         .dark-mode .joahire-card .scholar-image {
             filter: grayscale(100%) contrast(1.1) brightness(0.8);
             border-color: #e0e0e0;
         }
-        .joahire-card .scholar-name {
-            color: #333;
-            font-size: 2em; /* حجم أكبر قليلاً لاسمه */
-        }
-        .dark-mode .joahire-card .scholar-name {
-            color: #f0f0f0;
-        }
-        .joahire-card .era-tag {
-            background-color: #333;
-            color: #fff;
-            font-weight: bold;
-            border: 1px solid #fff; /* حدود بيضاء لتبرز في الأسود */
-        }
-        .dark-mode .joahire-card .era-tag {
-            background-color: #f0f0f0;
-            color: #333;
-            border-color: #333;
-        }
-        /* شارة "نجم الأرشيف" */
         .joahire-card::before {
             content: 'نجم الأرشيف ✨';
             position: absolute;
             top: 15px;
-            right: -30px; /* ابدأ من الخارج */
-            background-color: #d4af37; /* ذهبي */
+            right: -30px; 
+            background-color: #d4af37;
             color: white;
             padding: 5px 35px;
             font-size: 0.8em;
             font-weight: bold;
-            transform: rotate(45deg); /* دوران للمظهر الجمالي */
+            transform: rotate(45deg);
             transform-origin: top left;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             font-family: 'Cairo', sans-serif;
             z-index: 10;
         }
 
-        /* ============================================================= */
-        /* ====== تعديلات الشريط العلوي والتذييل إذا لزم الأمر ====== */
-        /* ============================================================= */
+        /* تعديلات الشريط العلوي والتذييل إذا لزم الأمر */
         .top-nav {
-            background-color: #4a2c00; /* بني داكن جداً */
+            background-color: #4a2c00;
             border-bottom-color: #8b4513;
         }
         .dark-mode .top-nav {
@@ -187,11 +166,9 @@
             color: #e0e0e0;
         }
 
-        /* ============================================================= */
-        /* ====== تنسيقات الشبكة (Grid) ====== */
-        /* ============================================================= */
+        /* تنسيقات الشبكة (Grid) */
         .archive-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تعديل العرض الأدنى للبطاقات */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
     </style>
 </head>
@@ -200,7 +177,7 @@
     <nav class="top-nav">
         <h1 class="logo-title">🏛️ سجل المؤثرين الخالدين</h1>
         <div class="nav-controls">
-            <a href="../index.html" class="nav-icon"><i class="fas fa-home"></i></a>
+            <a href="../index.html" class="nav-icon"><i class="fas fa-home"></i></a> 
             <button id="mode-toggle" class="nav-icon mode-toggle-btn"><i class="fas fa-moon"></i></button>
         </div>
     </nav>
@@ -213,10 +190,10 @@
             </p>
         </header>
 
-        <section id="scholar-cards-container" class="archive-grid writer-list">
+        <section id="static-writers-list" class="archive-grid writer-list">
             
             <a href="Joahire.html" class="scholar-card joahire-card">
-                <img src="../images/al_joahire_bw.jpg" alt="صورة محمد مهدي الجواهري (أبيض وأسود)" class="scholar-image">
+                <img src="../Images/al_joahire_bw.jpg" alt="صورة محمد مهدي الجواهري (أبيض وأسود)" class="scholar-image">
                 <div class="scholar-info">
                     <h4 class="scholar-name">محمد مهدي الجواهري</h4>
                     <p class="scholar-bio-snippet">شاعر العرب الأكبر، سيد الشعر الحديث.</p>
@@ -225,7 +202,7 @@
             </a>
             
             <a href="almutanabbi.html" class="scholar-card">
-                <img src="../images/al_mutanabbi.jpg" alt="صورة أبي الطيب المتنبي" class="scholar-image">
+                <img src="../Images/al_mutanabbi.jpg" alt="صورة أبي الطيب المتنبي" class="scholar-image">
                 <div class="scholar-info">
                     <h4 class="scholar-name">أبو الطيب المتنبي</h4>
                     <p class="scholar-bio-snippet">أعظم شعراء العربية على مر العصور.</p>
