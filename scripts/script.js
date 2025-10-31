@@ -33,6 +33,8 @@ function showToastNotification(message, type = 'info') {
     toast.addEventListener('click', () => toast.remove()); 
 }
 
+// ❌ تم إزالة دالة getBasePath لأننا لم نعد نحتاجها
+// وقمنا بتبسيط المسار.
 
 document.addEventListener('DOMContentLoaded', () => {
     // ⚙️ العناصر الأساسية (Cached Selectors)
@@ -280,11 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // 🔄 تم إرجاع المسار إلى المسار النسبي الصحيح الذي كان يعمل سابقاً
-            const response = await fetch('../data/archive.json', { signal: controller.signal });
+            // 🚨 المسار الجديد: تم نقل archive.json إلى نفس المجلد (pages/)
+            const response = await fetch('./archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
-            if (!response.ok) { throw new Error('فشل في تحميل ملف البيانات.'); }
+            if (!response.ok) { 
+                 throw new Error('فشل في تحميل ملف البيانات.'); 
+            }
+            
             const data = await response.json();
             
             localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() })); // الميزة 33
@@ -293,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToastNotification('✅ تم تحميل بيانات الأرشيف بنجاح.', 'success');
 
         } catch (error) {
-             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
+             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك، أو تأكد من وجود ملف archive.json في مجلد pages.');
              console.error("Data loading error:", error);
         } finally {
             setLoadingState(false);
