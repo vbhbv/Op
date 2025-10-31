@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أدباء وشعراء عرب - روائع الكلمة</title>
+    
+    <title>أدباء وشعراء عرب - سجل المؤثرين الخالدين</title>
+    
+    <meta name="description" content="غص في بحور الكلمة، واستكشف عوالم الإبداع لأعظم فرسان القلم والشعر في تاريخنا العربي المجيد.">
     
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ============================================================= */
-        /* ====== تنسيقات خاصة بصفحة الأدباء (override main.css) ====== */
-        /* ============================================================= */
-        body {
-            font-family: 'Amiri', serif; 
-        }
-        .section-heading {
+        /*
+         * الإبقاء على تنسيقات الترويسة والعنوان الخاصين بالصفحة،
+         * لكن التنسيق العام للبطاقات يُسحب الآن من main.css
+        */
+        .page-header-banner h2 {
             font-family: 'Scheherazade New', serif;
             font-size: 3.5em; 
             color: var(--light-accent);
@@ -24,10 +25,10 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-        .dark-mode .section-heading {
+        .dark-mode .page-header-banner h2 {
             color: var(--dark-accent);
         }
-        .section-description {
+        .page-header-banner p {
             font-size: 1.2em;
             color: var(--light-text);
             text-align: center;
@@ -35,187 +36,71 @@
             margin: 0 auto 50px auto;
             line-height: 1.8;
         }
-        .dark-mode .section-description {
+        .dark-mode .page-header-banner p {
             color: var(--dark-text);
-        }
-
-        /* تنسيق بطاقات الشخصيات بشكل عام */
-        .scholar-card {
-            background-color: #ffffff;
-            border: 1px solid var(--light-border);
-            border-radius: 12px;
-            box-shadow: 8px 8px 0px 0px var(--light-accent);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 25px;
-            text-decoration: none;
-            color: var(--light-text);
-            position: relative;
-            overflow: hidden;
-        }
-        .dark-mode .scholar-card {
-            background-color: #2a2a2a;
-            border-color: var(--dark-border);
-            box-shadow: 8px 8px 0px 0px var(--dark-accent);
-            color: var(--dark-text);
-        }
-        .scholar-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 12px 12px 0px 0px var(--light-accent);
-        }
-        .dark-mode .scholar-card:hover {
-            box-shadow: 12px 12px 0px 0px var(--dark-accent);
-        }
-
-        .scholar-image {
-            width: 150px; 
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--light-accent);
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
-        }
-        .dark-mode .scholar-image {
-            border-color: var(--dark-accent);
-        }
-        .scholar-card:hover .scholar-image {
-            border-color: #a0522d;
-        }
-        .dark-mode .scholar-card:hover .scholar-image {
-            border-color: #ffd700;
-        }
-
-        .scholar-name {
-            font-family: 'Scheherazade New', serif;
-            font-size: 1.8em;
-            color: var(--light-accent);
-            margin-bottom: 8px;
-        }
-        .dark-mode .scholar-name {
-            color: var(--dark-accent);
-        }
-        .scholar-bio-snippet {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .dark-mode .scholar-bio-snippet {
-            color: #ccc;
-        }
-        .era-tag {
-            display: inline-block;
-            background-color: #e0e0e0;
-            color: #666;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-top: 10px;
-            font-family: 'Cairo', sans-serif;
-        }
-        .dark-mode .era-tag {
-            background-color: #3a3a3a;
-            color: #e0e0e0;
-        }
-
-        /* تنسيق خاص ببطاقة الجواهري (الأبيض والأسود) */
-        .joahire-card .scholar-image {
-            filter: grayscale(100%) contrast(1.1);
-            border-color: #333;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
-        .dark-mode .joahire-card .scholar-image {
-            filter: grayscale(100%) contrast(1.1) brightness(0.8);
-            border-color: #e0e0e0;
-        }
-        .joahire-card::before {
-            content: 'نجم الأرشيف ✨';
-            position: absolute;
-            top: 15px;
-            right: -30px; 
-            background-color: #d4af37;
-            color: white;
-            padding: 5px 35px;
-            font-size: 0.8em;
-            font-weight: bold;
-            transform: rotate(45deg);
-            transform-origin: top left;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            font-family: 'Cairo', sans-serif;
-            z-index: 10;
-        }
-
-        /* تعديلات الشريط العلوي والتذييل إذا لزم الأمر */
-        .top-nav {
-            background-color: #4a2c00;
-            border-bottom-color: #8b4513;
-        }
-        .dark-mode .top-nav {
-            background-color: #1a1a1a;
-            border-bottom-color: #b8860b;
-        }
-        .page-footer {
-            background-color: #4a2c00;
-            color: #f4e8d8;
-        }
-        .dark-mode .page-footer {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-        }
-
-        /* تنسيقات الشبكة (Grid) */
-        .archive-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
     </style>
 </head>
-<body id="arab-writers-page" class="light-mode">
+<body class="light-mode" id="arab-writers-page">
     
-    <nav class="top-nav">
-        <h1 class="logo-title">🏛️ سجل المؤثرين الخالدين</h1>
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
         <div class="nav-controls">
-            <a href="../index.html" class="nav-icon"><i class="fas fa-home"></i></a> 
-            <button id="mode-toggle" class="nav-icon mode-toggle-btn"><i class="fas fa-moon"></i></button>
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
         </div>
-    </nav>
+    </header>
     
+    <div id="search-bar" class="search-container">
+        <select id="era-filter" title="تصفية حسب العصر"></select>
+        
+        <input type="text" id="search-input" placeholder="ابحث في سجلات الأدباء..." />
+        
+        <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
+    </div>
+
     <main class="main-container">
         <header class="page-header-banner">
-            <h2 class="section-heading">أدباء وشعراء عرب</h2>
-            <p class="section-description">
+            <h2>أدباء وشعراء عرب</h2>
+            <p>
                 غص في بحور الكلمة، واستكشف عوالم الإبداع لأعظم فرسان القلم والشعر في تاريخنا العربي المجيد.
             </p>
         </header>
 
-        <section id="static-writers-list" class="archive-grid writer-list">
-            
-            <a href="Joahire.html" class="scholar-card joahire-card">
-                <img src="../images/al_joahire_bw.jpg" alt="صورة محمد مهدي الجواهري (أبيض وأسود)" class="scholar-image">
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محمد مهدي الجواهري</h4>
-                    <p class="scholar-bio-snippet">شاعر العرب الأكبر، سيد الشعر الحديث.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="almutanabbi.html" class="scholar-card">
-                <img src="../images/al_mutanabbi.jpg" alt="صورة أبي الطيب المتنبي" class="scholar-image">
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو الطيب المتنبي</h4>
-                    <p class="scholar-bio-snippet">أعظم شعراء العربية على مر العصور.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
+        <p id="results-count" style="display: none;"></p>
+
+        <div id="loading-message" style="display:none;"></div>
+        
+        <section class="archive-grid" id="scholar-cards-container">
             </section>
     </main>
     
     <footer class="page-footer">
-        <p>الأرشيف العظيم | مشروع مفتوح المصدر على GitHub</p>
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
     </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
 
     <script src="../scripts/script.js"></script>
 </body>
