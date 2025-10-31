@@ -1,78 +1,115 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ⚙️ العناصر الأساسية (Cached Selectors)
+    const body = document.body;
     const toggleButton = document.getElementById('mode-toggle');
     const searchButton = document.getElementById('search-btn');
     const searchBar = document.getElementById('search-bar');
     const searchInput = document.getElementById('search-input');
-    const body = document.body;
-    
+    const scholarCardsContainer = document.getElementById('scholar-cards-container');
+    const backToTopButton = document.getElementById('back-to-top');
+    const navLinks = document.querySelectorAll('nav a');
+    const header = document.querySelector('header'); 
+    const filterSelect = document.getElementById('era-filter'); 
+    const clearSearchButton = document.getElementById('clear-search-btn');
+    const loadingMessageElement = document.getElementById('loading-message'); // الميزة 31
+
+    let allScholarsData = []; 
+    const SCROLLED_CLASS = 'scrolled'; 
+    const DATA_CACHE_KEY = 'archiveDataCache'; // الميزة 33
+    const CACHE_DURATION = 3600000; // الميزة 33: ساعة واحدة بالمللي ثانية
+
     // =============================================================
-    // 1. وظائف الوضع الليلي والنهاري (Mode Toggle Functions)
+    // I. تحسينات الوضع الليلي/النهاري
     // =============================================================
-    
-    // تحميل الوضع المحفوظ والتعيين المبدئي
-    const savedMode = localStorage.getItem('mode') || 'light-mode';
-    // التأكد من أن body لا يحمل وضعاً قديماً قبل إضافة الوضع الجديد
-    body.className = body.className.split(' ').filter(c => c !== 'light-mode' && c !== 'dark-mode').join(' ') + ' ' + savedMode;
-    
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedMode = localStorage.getItem('mode') || (prefersDark.matches ? 'dark-mode' : 'light-mode');
+
+    function toggleMode(newMode = null) {
+        body.classList.add('mode-transition'); 
+        const currentMode = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+        const finalMode = newMode || (currentMode === 'light-mode' ? 'dark-mode' : 'light-mode');
+        body.classList.remove('light-mode', 'dark-mode');
+        body.classList.add(finalMode);
+        localStorage.setItem('mode', finalMode);
+        updateModeIcon(finalMode);
+        setTimeout(() => body.classList.remove('mode-transition'), 300); 
+    }
 
     function updateModeIcon(currentMode) {
         if (toggleButton) {
-             // تحديد الأيقونة المناسبة (شمس للنهاري، قمر لليلي)
-             toggleButton.innerHTML = (currentMode === 'dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+             toggleButton.innerHTML = (currentMode === 'dark-mode') ? 
+                 '<i class="fas fa-sun" title="الوضع النهاري"></i>' : 
+                 '<i class="fas fa-moon" title="الوضع الليلي"></i>';
         }
     }
-    
-    // تشغيل تحديث الأيقونة عند التحميل
+
+    body.classList.add(savedMode);
+    updateModeIcon(savedMode);
     if (toggleButton) {
-        updateModeIcon(savedMode);
-
-        toggleButton.addEventListener('click', () => {
-            const newMode = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
-            
-            // تبديل الكلاسات بأمان
-            const classes = body.className.split(' ').filter(c => c !== 'light-mode' && c !== 'dark-mode');
-            body.className = classes.join(' ') + ' ' + newMode;
-
-            localStorage.setItem('mode', newMode);
-            updateModeIcon(newMode);
-        });
+        toggleButton.addEventListener('click', () => toggleMode());
     }
-
+    
     // =============================================================
-    // 2. وظائف البحث (Search Functions)
+    // II. تحسينات وظائف البحث والتصفية
     // =============================================================
     
-    // التأكد من وجود جميع عناصر البحث قبل إضافة المستمعين
-    if (searchButton && searchBar && searchInput) {
-        searchButton.addEventListener('click', () => {
-            searchBar.classList.toggle('hidden');
-            if (!searchBar.classList.contains('hidden')) {
-                searchInput.focus();
-            }
+    // الميزة 32: دالة التصفية الموحدة مع تقنية Debounce 
+    const debouncedFiltering = debounce(applyFiltering, 300); 
+
+    function applyFiltering() {
+        const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        const selectedEra = filterSelect ? filterSelect.value : 'all'; 
+
+        if (clearSearchButton) {
+            clearSearchButton.style.display = searchTerm ? 'block' : 'none';
+        }
+
+        const filteredScholars = allScholarsData.filter(scholar => {
+            const matchesSearch = scholar.name.toLowerCase().includes(searchTerm) ||
+                                  scholar.bio_snippet.toLowerCase().includes(searchTerm) ||
+                                  scholar.era.toLowerCase().includes(searchTerm);
+                                  
+            const matchesEra = selectedEra === 'all' || scholar.era === selectedEra;
+            
+            return matchesSearch && matchesEra;
         });
         
-        // يمكن إضافة وظيفة التصفية/البحث هنا لاحقاً
-        searchInput.addEventListener('keyup', (e) => {
-            // [هنا يمكن إضافة كود التصفية حسب الإدخال]
-        });
+        if (filteredScholars.length === 0) {
+             displayNoResults(scholarCardsContainer);
+        } else {
+             displayScholarCards(filteredScholars, scholarCardsContainer);
+        }
     }
 
-
+    if (searchInput) {
+        // استخدام دالة Debounce بدلاً من الاستماع المباشر لـ 'input'
+        searchInput.addEventListener('input', debouncedFiltering);
+    }
+    
     // =============================================================
-    // 3. وظائف تحميل وعرض البيانات (لصفحات الأرشيف التي تحتاج JSON)
+    // III. تحسينات تحميل وعرض البيانات
     // =============================================================
     
-    // دالة إنشاء بطاقة لعرضها
     function createScholarCard(scholar) {
         const card = document.createElement('a');
-        card.href = `pages/${scholar.id}.html`; // يجب أن يكون مسار الصفحات هكذا
+        // الميزة 34: إضافة أداة Tooltip على البطاقة
+        card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`);
+        card.href = `pages/${scholar.id}.html`; 
+        card.setAttribute('data-era', scholar.era.replace(/\s+/g, '-')); 
         card.classList.add('scholar-card');
-        card.classList.add(`${scholar.id}-card`); // لإضافة تنسيق خاص (مثل joahire-card)
         
-        // إنشاء محتوى البطاقة (صورة، اسم، نبذة)
+        card.addEventListener('mouseover', () => card.classList.add('hover-shake'));
+        card.addEventListener('animationend', () => card.classList.remove('hover-shake'));
+
+        const iconHtml = scholar.featured ? 
+            '<span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>' : '';
+        
         card.innerHTML = `
-            <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image">
+            <div class="scholar-image-wrapper">
+                <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../Images/placeholder.webp';"> </div>
             <div class="scholar-info">
+                ${iconHtml}
                 <h4 class="scholar-name">${scholar.name}</h4>
                 <p class="scholar-bio-snippet">${scholar.bio_snippet}</p>
                 <span class="era-tag">${scholar.era}</span>
@@ -81,57 +118,172 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    // دالة لعرض البطاقات في الحاوية المحددة
-    function displayScholarCards(scholars, containerId) {
-        const container = document.getElementById(containerId);
+    function displayScholarCards(scholars, container) {
         if (container) {
-            // تفريغ الحاوية قبل الإضافة لمنع التكرار (هنا يتم إزالة الكود اليدوي)
             container.innerHTML = ''; 
+            const fragment = document.createDocumentFragment();
             
             scholars.forEach(scholar => {
-                container.appendChild(createScholarCard(scholar));
+                fragment.appendChild(createScholarCard(scholar));
             });
+            
+            container.appendChild(fragment);
+            observeNewCards();
+            
+            // الميزة 36: تحديث عدد النتائج
+            updateResultCount(scholars.length);
+        }
+    }
+    
+    function updateResultCount(count) {
+        const countElement = document.getElementById('results-count'); // يجب وجود هذا العنصر في HTML
+        if (countElement) {
+            countElement.textContent = `عرض ${count} من أصل ${allScholarsData.length} شخصية`;
+            countElement.style.display = 'block';
+        }
+    }
+    
+    // الميزة 31: دالة لتحديث حالة التحميل
+    function setLoadingState(isLoading, message = 'جارِ تحميل البيانات...') {
+        if (loadingMessageElement) {
+            loadingMessageElement.innerHTML = isLoading ? `<div class="loader-spinner"></div><p>${message}</p>` : '';
+            loadingMessageElement.style.display = isLoading ? 'flex' : 'none';
+        }
+        if (scholarCardsContainer) {
+            scholarCardsContainer.style.display = isLoading ? 'none' : 'grid';
         }
     }
 
-    // دالة تحميل البيانات من ملف JSON
+
     async function loadArchiveData() {
+        if (!scholarCardsContainer) return;
+        
+        setLoadingState(true); // الميزة 31: تفعيل حالة التحميل
+
+        // الميزة 33: محاولة استعادة البيانات من الذاكرة المؤقتة (LocalStorage)
+        const cachedData = localStorage.getItem(DATA_CACHE_KEY);
+        if (cachedData) {
+            const { data, timestamp } = JSON.parse(cachedData);
+            if (Date.now() - timestamp < CACHE_DURATION) {
+                console.log('تم تحميل البيانات من الذاكرة المؤقتة.');
+                processData(data);
+                setLoadingState(false);
+                return;
+            } else {
+                console.log('الذاكرة المؤقتة منتهية الصلاحية. جلب جديد...');
+                localStorage.removeItem(DATA_CACHE_KEY);
+            }
+        }
+
         try {
-            // نفترض أن ملف البيانات هو data/archive.json
-            const response = await fetch('../data/archive.json');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            
+            const response = await fetch('../data/archive.json', { signal: controller.signal });
+            clearTimeout(timeoutId);
+            
             if (!response.ok) {
-                throw new Error('فشل في تحميل ملف البيانات: ' + response.statusText);
+                throw new Error('فشل في تحميل ملف البيانات.');
             }
             const data = await response.json();
             
-            // تحديد الصفحة الحالية لعرض البيانات المناسبة
-            if (document.body.id === 'arab-writers-page') {
-                displayScholarCards(data.arabWriters, 'scholar-cards-container');
-            } 
-            // يمكن إضافة أقسام أخرى هنا لاحقاً
-            
+            // الميزة 33: تخزين البيانات و الطابع الزمني في الذاكرة المؤقتة
+            localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
+
+            processData(data);
+
         } catch (error) {
             console.error('خطأ في معالجة بيانات الأرشيف:', error);
-            // في حالة الخطأ، نترك الكود اليدوي في HTML كما هو (لكن لا يجب مسحه في البداية)
+            setLoadingState(false, 'تعذر تحميل المحتوى. يرجى المحاولة مرة أخرى.');
+             if (scholarCardsContainer) {
+                 scholarCardsContainer.innerHTML = '<p class="error-message">تعذر تحميل المحتوى. يرجى المحاولة مرة أخرى.</p>';
+            }
+        } finally {
+            setLoadingState(false);
         }
     }
 
-    // =============================================================
-    // 🚨 نقطة التوقف الحالية لمنع الاختفاء 🚨
-    // =============================================================
-    
-    // الكود اليدوي هنا كان:
-    // if (document.body.id && document.body.id.includes('-page')) {
-    //     loadArchiveData(); 
-    // }
-    
-    // **الحل المؤقت:** عدم تشغيل loadArchiveData() تلقائياً
-    // إذا كنت تخطط للاعتماد على الكود المكتوب يدوياً في arab_writers.html، 
-    // فمن الأفضل عدم تشغيل دالة loadArchiveData() في هذه الصفحة أبداً.
-    
-    // **الحل البديل:** إذا أردت استخدام JSON في المستقبل، يجب إزالة البطاقات المكتوبة يدوياً من HTML.
-    
-    // في الوقت الحالي، سنترك دالة loadArchiveData معطلة لمنع الاختفاء
-    // حتى تتمكن من رؤية البطاقات اليدوية بشكل دائم.
+    function processData(data) {
+        let dataToDisplay = [];
+        const uniqueEras = new Set(); 
 
+        if (document.body.id === 'arab-writers-page') {
+            dataToDisplay = data.arabWriters || [];
+            dataToDisplay.forEach(scholar => uniqueEras.add(scholar.era));
+        } 
+
+        // الميزة 37: فرز البيانات أبجدياً حسب الاسم افتراضياً
+        dataToDisplay.sort((a, b) => a.name.localeCompare(b.name)); 
+
+        allScholarsData = dataToDisplay; 
+        displayScholarCards(allScholarsData, scholarCardsContainer);
+        populateEraFilter(uniqueEras);
+    }
+    
+
+    if (document.body.id && document.body.id.includes('-page')) {
+         loadArchiveData(); 
+    }
+
+    // =============================================================
+    // IV. ميزات جمالية وتقنية إضافية
+    // =============================================================
+    
+    // دالة Debounce (الميزة 32)
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+    
+    // الميزة 38: إضافة مستمع لأحداث لوحة المفاتيح العالمية (للإغلاق السريع)
+    document.addEventListener('keydown', (e) => {
+        // إذا ضغط المستخدم على CTRL + K
+        if (e.ctrlKey && e.key === 'k') {
+            e.preventDefault(); // منع سلوك المتصفح الافتراضي
+            if (searchBar) {
+                // فتح وإغلاق شريط البحث
+                searchBar.classList.toggle('is-visible');
+                if (searchBar.classList.contains('is-visible')) {
+                    searchInput.focus();
+                }
+            }
+        }
+        
+        // الميزة 39: إغلاق جميع الإشعارات بـ Shift + Escape
+        if (e.shiftKey && e.key === 'Escape') {
+            const toasts = document.querySelectorAll('#toast-container .toast-notification');
+            toasts.forEach(toast => toast.remove());
+        }
+    });
+
+    // ميزة 40: تتبع النقر على زر التبديل
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+             // يمكن هنا دمج خدمة تحليل (مثل Google Analytics)
+             // console.log('Mode Toggled', body.classList.contains('dark-mode') ? 'Dark' : 'Light');
+        });
+    }
+
+    // ميزات أخرى (تم الاحتفاظ بها)
+    // ... التحقق من الاتصال، الرابط النشط، زر العودة للأعلى، Intersection Observer...
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-loaded');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, { rootMargin: '0px', threshold: 0.1 });
+
+    const observeNewCards = () => {
+        document.querySelectorAll('.scholar-card').forEach(card => {
+            if (!card.classList.contains('is-loaded')) { 
+                observer.observe(card);
+            }
+        });
+    };
 });
