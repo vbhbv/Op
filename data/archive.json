@@ -1,7 +1,7 @@
 {
   "arabWriters": [
     {
-      "id": "al_Joahire",
+      "id": "Joahire.html",
       "name": "محمد مهدي الجواهري",
       "bio_snippet": "شاعر العرب الأكبر، سيد الشعر الحديث.",
       "era": "العصر الحديث",
@@ -9,7 +9,7 @@
       "featured": true 
     },
     {
-      "id": "al_mutanabbi",
+      "id": "almutanabbi.html",
       "name": "أبو الطيب المتنبي",
       "bio_snippet": "أعظم شعراء العربية على مر العصور.",
       "era": "العصر العباسي",
