@@ -18,7 +18,7 @@
     --font-primary: 'Amiri', serif;
     --font-secondary: 'Cairo', sans-serif;
     --font-title: 'Aref Ruqaa', serif; /* خط الرقعة للأسماء الكبيرة */
-    --font-fancy: 'Scheherazade New', serif; /* **تمت الإضافة لحل مشكلة الخط النسخي** */
+    --font-fancy: 'Scheherazade New', serif; /* **تمت الإضافة لدعم الخط النسخي** */
 }
 
 /* ============================================================= */
@@ -72,21 +72,24 @@ a {
     border-bottom-color: #8b4513;
 }
 
-/* **التعديل لحل مشكلة خط النسخ وظهور الاسم** */
+/* **التعديل لحل مشكلة خط النسخ وظهور الاسم (logo-title)** */
 .top-nav .logo-title {
-    font-size: 2em; /* زيادة الحجم */
+    font-size: 2.2em; /* زيادة الحجم ليتناسب مع الخط المزخرف */
     font-family: var(--font-fancy); /* استخدام الخط النسخي المزخرف */
     font-weight: 700;
     line-height: 1.2;
-    overflow: hidden; /* **مهم لعدم تجاوز مساحة الشريط** */
-    flex-grow: 1; /* السماح له بأخذ المساحة المتبقية */
-    min-width: 0; /* لمنع المشاكل في Flexbox */
+    /* ضمان عدم تجاوز النص للمساحة المتاحة وحجز مساحة كافية للأيقونات */
+    flex-grow: 1; 
+    flex-shrink: 1; 
+    overflow: hidden; 
+    white-space: nowrap; /* منع انقسام العنوان في سطرين */
+    text-overflow: ellipsis; /* إضافة نقاط إذا كان العنوان طويلاً جداً */
 }
 
 .nav-controls {
     display: flex;
     gap: 15px;
-    flex-shrink: 0; /* **مهم لعدم اختفاء الأيقونات على الهاتف** */
+    flex-shrink: 0; /* **مهم جداً: يمنع اختفاء الأيقونات** */
 }
 
 .nav-icon {
@@ -370,6 +373,11 @@ a {
     #scholar-name {
         font-size: 3.5em !important; 
         padding-top: 20px !important;
+    }
+    
+    /* تصغير حجم العنوان في الشريط العلوي على الهواتف */
+    .top-nav .logo-title {
+        font-size: 1.5em; 
     }
     
     /* تخطيط عمودي للصورة والنص */
