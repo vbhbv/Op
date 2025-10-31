@@ -13,10 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /*
-         * الإبقاء على تنسيقات الترويسة والعنوان الخاصين بالصفحة،
-         * لكن التنسيق العام للبطاقات يُسحب الآن من main.css
-        */
+        /* التنسيقات الخاصة التي كانت موجودة لديك (تم تحديثها لتتوافق مع main.css) */
         .page-header-banner h2 {
             font-family: 'Scheherazade New', serif;
             font-size: 3.5em; 
@@ -39,6 +36,35 @@
         .dark-mode .page-header-banner p {
             color: var(--dark-text);
         }
+
+        /* تنسيق خاص ببطاقة الجواهري */
+        .joahire-card .scholar-image {
+            filter: grayscale(100%) contrast(1.1);
+            border-color: #333;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .dark-mode .joahire-card .scholar-image {
+            filter: grayscale(100%) contrast(1.1) brightness(0.8);
+            border-color: #e0e0e0;
+        }
+        .joahire-card::before {
+            content: 'نجم الأرشيف ✨';
+            position: absolute;
+            top: 15px;
+            right: -30px; 
+            background-color: #d4af37;
+            color: white;
+            padding: 5px 35px;
+            font-size: 0.8em;
+            font-weight: bold;
+            transform: rotate(45deg);
+            transform-origin: top left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: 'Cairo', sans-serif;
+            z-index: 10;
+        }
+        /* إخفاء عناصر البحث والتصفية لأن القائمة ثابتة الآن */
+        #search-bar { display: none !important; } 
     </style>
 </head>
 <body class="light-mode" id="arab-writers-page">
@@ -48,7 +74,7 @@
         
         <nav>
             <a href="../index.html">الرئيسية</a>
-            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_writers.html" class="active-nav-link">الأدباء</a> 
             <a href="arab_scientists.html">العلماء</a>
         </nav>
         
@@ -60,9 +86,7 @@
     
     <div id="search-bar" class="search-container">
         <select id="era-filter" title="تصفية حسب العصر"></select>
-        
         <input type="text" id="search-input" placeholder="ابحث في سجلات الأدباء..." />
-        
         <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
     </div>
 
@@ -79,6 +103,25 @@
         <div id="loading-message" style="display:none;"></div>
         
         <section class="archive-grid" id="scholar-cards-container">
+            
+            <a href="Joahire.html" class="scholar-card joahire-card">
+                <img src="../images/al_joahire_bw.jpg" alt="صورة محمد مهدي الجواهري (أبيض وأسود)" class="scholar-image" loading="lazy">
+                <div class="scholar-info">
+                    <h4 class="scholar-name">محمد مهدي الجواهري</h4>
+                    <p class="scholar-bio-snippet">شاعر العرب الأكبر، سيد الشعر الحديث.</p>
+                    <span class="era-tag">العصر الحديث</span>
+                </div>
+            </a>
+            
+            <a href="almutanabbi.html" class="scholar-card">
+                <img src="../images/al_mutanabbi.jpg" alt="صورة أبي الطيب المتنبي" class="scholar-image" loading="lazy">
+                <div class="scholar-info">
+                    <h4 class="scholar-name">أبو الطيب المتنبي</h4>
+                    <p class="scholar-bio-snippet">أعظم شعراء العربية على مر العصور.</p>
+                    <span class="era-tag">العصر العباسي</span>
+                </div>
+            </a>
+
             </section>
     </main>
     
