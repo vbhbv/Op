@@ -14,18 +14,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="light-mode">
-
-    <nav class="top-nav">
+<body class="light-mode" id="main-page"> 
+    <header>
         <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="pages/arab_writers.html">الأدباء</a>
+            <a href="pages/arab_scientists.html">العلماء</a>
+        </nav>
+        
         <div class="nav-controls">
             <button id="search-btn" class="nav-icon"><i class="fas fa-search"></i></button>
             <button id="mode-toggle" class="nav-icon mode-toggle-btn"><i class="fas fa-moon"></i></button>
         </div>
-    </nav>
+    </header>
     
-    <div id="search-bar" class="search-container hidden">
+    <div id="search-bar" class="search-container">
         <input type="text" id="search-input" placeholder="ابحث في سجلات الأرشيف..." />
+        <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
     </div>
 
     <main class="main-container">
@@ -33,7 +39,16 @@
             <h2>مرحباً بك في الأرشيف العظيم</h2>
             <p>سجل جامع لأصحاب البصمات العلمية والأدبية، من كل زمان ومكان.</p>
         </header>
+        
+        <div class="filter-controls" style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 20px;">
+            
+            <select id="era-filter" title="تصفية حسب العصر" style="display:none;"></select>
+        </div>
 
+        <p id="results-count" style="display: none;"></p>
+
+        <div id="loading-message" style="display:none;"></div>
+        
         <section class="archive-grid">
             <a href="pages/arab_scientists.html" class="section-card scientist-card">
                 <span class="card-icon"><i class="fas fa-flask"></i></span>
@@ -65,7 +80,8 @@
                 <p>صفحات مميزة لأكثر الشخصيات تأثيراً.</p>
             </a>
         </section>
-    </main>
+        
+        </main>
 
     <footer class="page-footer">
         <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
@@ -82,6 +98,10 @@
             </a>
         </p>
     </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
 
     <script src="scripts/script.js"></script>
 </body>
