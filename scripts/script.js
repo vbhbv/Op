@@ -33,8 +33,18 @@ function showToastNotification(message, type = 'info') {
     toast.addEventListener('click', () => toast.remove()); 
 }
 
-// ❌ تم إزالة دالة getBasePath لأننا لم نعد نحتاجها
-// وقمنا بتبسيط المسار.
+// الميزة 41: دالة لتحديد المسار الأساسي للمشروع على GitHub Pages
+function getBasePath() {
+    const pathSegments = window.location.pathname.split('/');
+    // إذا كان هناك اسم مستودع (عادةً ما يكون الجزء الثاني)، سنستخدمه.
+    // مثال: /Op/pages/arab_writers.html -> سنستخدم /Op
+    if (pathSegments.length > 1 && pathSegments[1] !== '' && pathSegments[1] !== 'pages' && pathSegments[1].toLowerCase() !== 'index.html') {
+        return `/${pathSegments[1]}`;
+    }
+    // العودة للمسار الفارغ في حالة النطاق المخصص أو عدم وجود اسم مستودع في المسار
+    return ''; 
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // ⚙️ العناصر الأساسية (Cached Selectors)
@@ -282,11 +292,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // 🚨 المسار الجديد: تم نقل archive.json إلى نفس المجلد (pages/)
-            const response = await fetch('./archive.json', { signal: controller.signal });
+            // 🚨 تطبيق الحل النهائي: استخدام المسار الأساسي للمستودع
+            const basePath = getBasePath();
+            const filePath = `${basePath}/data/archive.json`;
+            
+            // إذا لم يعمل المسار الجديد، نعود للمسار النسبي كخيار احتياطي
+            const finalPath = (basePath === '') ? '../data/archive.json' : filePath;
+            
+            const response = await fetch(finalPath, { signal: controller.signal });
             clearTimeout(timeoutId);
             
             if (!response.ok) { 
+                 // إذا فشل المسار النهائي، سنحاول المسار النسبي كحل أخير (للتصفح المحلي)
+                 if(finalPath !== '../data/archive.json') {
+                      console.warn('فشل المسار المطلق. محاولة المسار النسبي...');
+                      const fallbackResponse = await fetch('../data/archive.json', { signal: controller.signal });
+                      if(fallbackResponse.ok) {
+                          const data = await fallbackResponse.json();
+                          localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
+                          processData(data);
+                          showToastNotification('✅ تم التحميل بالمسار الاحتياطي.', 'success');
+                          return;
+                      }
+                 }
                  throw new Error('فشل في تحميل ملف البيانات.'); 
             }
             
@@ -298,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToastNotification('✅ تم تحميل بيانات الأرشيف بنجاح.', 'success');
 
         } catch (error) {
-             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك، أو تأكد من وجود ملف archive.json في مجلد pages.');
+             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
              console.error("Data loading error:", error);
         } finally {
             setLoadingState(false);
