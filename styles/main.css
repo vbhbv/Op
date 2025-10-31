@@ -27,7 +27,7 @@
 }
 
 /* ============================================================= */
-/* ====== التنسيقات العامة والوضع الليلي/النهاري (المحدث) ====== */
+/* ====== التنسيقات العامة والوضع الليلي/النهاري ====== */
 /* ============================================================= */
 * {
     box-sizing: border-box;
@@ -40,117 +40,137 @@ body {
     line-height: 1.6;
     min-height: 100vh;
 }
-
 /* الميزة 2: الانتقال السلس يطبق فقط عند التبديل */
 body:not(.mode-transition) {
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
-
-.mode-transition {
-    /* هذا الكلاس يطبق لتفعيل الانتقال المرئي مرة واحدة */
-    transition: background-color var(--transition-speed), color var(--transition-speed) !important;
-}
-
 .light-mode {
     background-color: var(--light-bg);
     color: var(--light-text);
 }
-
 .dark-mode {
     background-color: var(--dark-bg);
     color: var(--dark-text);
 }
+a { text-decoration: none; color: inherit; }
 
-a {
-    text-decoration: none;
-    color: inherit;
+/* ====== المحتوى الرئيسي (Main Container) ====== */
+.main-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* ============================================================= */
-/* ====== شريط التنقل العلوي والترويسة (Header & Nav) ====== */
+/* ====== الترويسة (Header) - التصحيح الهيكلي للـ Flexbox ====== */
 /* ============================================================= */
-header { /* تغيير .top-nav إلى <header> لتحسين الدلالات (Semantics) */
+header { 
+    padding: 15px 30px;
     background-color: var(--light-accent);
     color: #fff;
-    padding: 15px 30px;
-    display: flex;
+    
+    display: flex; 
     justify-content: space-between;
     align-items: center;
+    
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     position: sticky; 
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
-
 .dark-mode header {
     background-color: var(--dark-accent);
 }
 
-/* الميزة 16: تأثير الترويسة الثابتة (عند التمرير) */
+header .logo-title {
+    font-size: 2.2em;
+    font-family: var(--font-fancy);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+/* تنسيق روابط التنقل (Navigation Links) */
+header nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; 
+    gap: 15px;
+}
+header nav a {
+    color: inherit; 
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+/* الميزة 10 & 11: الرابط النشط */
+header nav a.active-nav-link {
+    color: #ffd700; 
+    border-bottom: 2px solid #ffd700;
+}
+
+.nav-controls {
+    display: flex; 
+    gap: 10px;
+    flex-shrink: 0;
+}
+.nav-icon {
+    background: none;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s;
+}
+.nav-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* الميزة 16: تأثير الترويسة الثابتة عند التمرير */
 header.scrolled {
-    background-color: var(--light-bg); /* خلفية بيضاء عتيقة */
+    background-color: var(--light-bg); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border-bottom: 2px solid var(--light-accent);
 }
 .dark-mode header.scrolled {
-    background-color: var(--dark-bg); /* خلفية داكنة */
+    background-color: var(--dark-bg);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    border-bottom: 2px solid var(--dark-accent);
+    border-bottom-color: var(--dark-accent);
 }
-header.scrolled .logo-title, 
-header.scrolled .nav-controls .nav-icon {
+header.scrolled .logo-title, header.scrolled .nav-controls .nav-icon {
     color: var(--light-text);
 }
-.dark-mode header.scrolled .logo-title,
-.dark-mode header.scrolled .nav-controls .nav-icon {
+.dark-mode header.scrolled .logo-title, .dark-mode header.scrolled .nav-controls .nav-icon {
     color: var(--dark-text);
 }
 
-/* تنسيق روابط التنقل (Navigation Links) */
-nav a {
-    color: inherit; /* لتوريث اللون من الـ header */
-    padding: 0 10px;
-    transition: color 0.3s;
-}
-
-/* الميزة 10 & 11: الرابط النشط */
-nav a.active-nav-link,
-nav a:hover {
-    color: #f7d75b; /* لون ذهبي لامع للتأكيد */
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-}
-.dark-mode nav a.active-nav-link,
-.dark-mode nav a:hover {
-    color: #ffd700; 
-}
-
-
 /* ============================================================= */
-/* ====== عناصر التحكم (Controls) ====== */
+/* ====== شريط البحث والتصفية (Search & Filter) ====== */
 /* ============================================================= */
 
-/* شريط البحث (Search Bar) - الميزة 4 */
+/* شريط البحث (الميزة 4) */
 #search-bar {
     position: absolute;
-    top: 100%; /* أسفل الترويسة مباشرة */
+    top: 100%; 
     left: 0;
     right: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px 30px;
     background-color: var(--light-highlight);
-    border-top: 1px solid var(--light-border);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    gap: 10px;
 }
-.dark-mode #search-bar {
-    background-color: var(--dark-highlight);
-    border-top-color: var(--dark-border);
+.dark-mode #search-bar { 
+    background-color: var(--dark-highlight); 
 }
 
 #search-bar.is-visible {
@@ -164,13 +184,8 @@ nav a:hover {
     padding: 10px 15px;
     border: 2px solid var(--light-border);
     border-radius: 5px;
-    font-family: var(--font-secondary);
-    font-size: 1em;
     outline: none;
     transition: border-color 0.3s;
-}
-#search-input:focus {
-    border-color: var(--light-accent);
 }
 .dark-mode #search-input {
     background-color: #2c2c2c;
@@ -181,6 +196,23 @@ nav a:hover {
     border-color: var(--dark-accent);
 }
 
+/* الميزة 23: قائمة التصفية */
+#era-filter {
+    padding: 10px 15px;
+    border: 2px solid var(--light-accent);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    display: none; 
+    font-family: var(--font-secondary);
+}
+.dark-mode #era-filter {
+    background-color: #3a3a3a;
+    color: var(--dark-text);
+    border-color: var(--dark-accent);
+}
+
 /* الميزة 27: زر مسح البحث */
 #clear-search-btn {
     background: none;
@@ -188,34 +220,11 @@ nav a:hover {
     color: var(--light-text);
     font-size: 1.2em;
     cursor: pointer;
-    margin-left: -35px; /* تداخل مع حقل الإدخال */
+    margin-left: -35px;
     z-index: 10;
-    transition: color 0.2s;
-    display: none; /* يتم التحكم به عبر JS */
+    display: none; 
 }
-.dark-mode #clear-search-btn {
-    color: var(--dark-text);
-}
-
-
-/* الميزة 23: قائمة التصفية حسب العصر */
-#era-filter {
-    margin-left: 20px;
-    padding: 10px 15px;
-    border: 2px solid var(--light-accent);
-    border-radius: 5px;
-    font-family: var(--font-secondary);
-    font-size: 1em;
-    cursor: pointer;
-    background-color: var(--light-bg);
-    color: var(--light-text);
-    display: none; /* الميزة 24: يتم إظهاره عبر JS */
-}
-.dark-mode #era-filter {
-    background-color: #3a3a3a;
-    color: var(--dark-text);
-    border-color: var(--dark-accent);
-}
+.dark-mode #clear-search-btn { color: var(--dark-text); }
 
 
 /* الميزة 36: عرض عدد النتائج */
@@ -228,7 +237,7 @@ nav a:hover {
     padding: 10px;
     background-color: rgba(139, 69, 19, 0.1);
     border-radius: 5px;
-    display: none; /* يتم إظهاره عبر JS */
+    display: none;
 }
 .dark-mode #results-count {
     color: var(--dark-accent);
@@ -236,10 +245,102 @@ nav a:hover {
 }
 
 /* ============================================================= */
-/* ====== بطاقات العلماء (Scholar Cards) ====== */
+/* ====== شبكة الأقسام (Archive Grid) والبطاقات ====== */
 /* ============================================================= */
+.page-header-banner {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    border: 3px solid var(--light-accent);
+    background: rgba(255, 255, 255, 0.5);
+}
+.dark-mode .page-header-banner {
+    border-color: var(--dark-accent);
+    background: rgba(0, 0, 0, 0.3);
+}
 
-/* تنسيق العصر (Era Tag) */
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.section-card, .scholar-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    box-shadow: 6px 6px 0px 0px var(--light-accent);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, opacity 0.6s, transform 0.6s;
+    text-align: center;
+    background-color: #ffffff;
+    color: var(--light-text);
+}
+.dark-mode .section-card, .dark-mode .scholar-card {
+    border-color: var(--dark-border);
+    box-shadow: 6px 6px 0px 0px var(--dark-accent);
+    background-color: #2a2a2a;
+    color: var(--dark-text);
+}
+
+.section-card:hover, .scholar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0px 0px var(--light-accent);
+}
+.dark-mode .section-card:hover, .dark-mode .scholar-card:hover {
+    box-shadow: 10px 10px 0px 0px var(--dark-accent);
+}
+
+/* الميزة 14: تأثير التحميل عند الظهور */
+.scholar-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s;
+}
+.scholar-card.is-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* الميزة 28: تأثير الهز عند التفاعل */
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+.scholar-card.hover-shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+
+
+.scholar-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--light-accent);
+}
+.dark-mode .scholar-image {
+    border-color: var(--dark-accent);
+}
+
+/* الميزة 29: شارة التمييز */
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: gold;
+    font-size: 1.5em;
+    animation: pulse 1.5s infinite alternate;
+}
+@keyframes pulse {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.1); opacity: 1; }
+}
+
 .era-tag {
     display: inline-block;
     padding: 5px 10px;
@@ -255,67 +356,26 @@ nav a:hover {
     color: var(--dark-accent);
 }
 
-/* الميزة 29: شارة التمييز */
-.featured-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: gold;
-    font-size: 1.5em;
-    animation: pulse 1.5s infinite alternate;
-}
-
-@keyframes pulse {
-    from { transform: scale(1); opacity: 0.8; }
-    to { transform: scale(1.1); opacity: 1; }
-}
-
-/* الميزة 28: تأثير الهز عند التفاعل */
-.scholar-card.hover-shake {
-    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-@keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
-}
-
-/* الميزة 14: تأثير التحميل عند الظهور (Load-in Effect) */
-.scholar-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s;
-}
-
-.scholar-card.is-loaded {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* ============================================================= */
-/* ====== حالات خاصة (Messages & Loaders) ====== */
+/* ====== حالة التحميل والإشعارات (Loaders & Toasts) ====== */
 /* ============================================================= */
 
 /* رسالة لا توجد نتائج (الميزة 7) */
-.no-results-message, .error-message {
+.no-results-message {
     text-align: center;
     padding: 50px 20px;
     font-size: 1.5em;
     color: var(--light-accent);
-    grid-column: 1 / -1; /* لجعلها تأخذ عرض الشبكة بالكامل */
+    grid-column: 1 / -1; 
 }
-.dark-mode .no-results-message, .dark-mode .error-message {
+.dark-mode .no-results-message {
     color: var(--dark-accent);
 }
 
 /* الميزة 31: عنصر حالة التحميل */
 #loading-message {
     grid-column: 1 / -1;
-    display: flex; /* يتم التحكم به عبر JS */
+    display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -327,7 +387,7 @@ nav a:hover {
     color: var(--dark-accent);
 }
 
-/* الميزة 19: مؤشر التحميل الدوار (Spinner) */
+/* الميزة 19: مؤشر التحميل الدوار */
 .loader-spinner {
     border: 5px solid var(--light-border);
     border-top: 5px solid var(--light-accent);
@@ -341,16 +401,10 @@ nav a:hover {
     border-color: var(--dark-border);
     border-top-color: var(--dark-accent);
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-
-/* ============================================================= */
-/* ====== الإشعارات المؤقتة (Toast Notifications) ====== */
-/* ============================================================= */
 
 /* الميزة 18: حاوية الإشعارات */
 #toast-container {
@@ -362,7 +416,6 @@ nav a:hover {
     flex-direction: column;
     gap: 10px;
 }
-
 .toast-notification {
     min-width: 250px;
     padding: 15px;
@@ -370,32 +423,24 @@ nav a:hover {
     color: white;
     font-family: var(--font-secondary);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer; /* الميزة 30: إغلاق بالنقر */
+    cursor: pointer; 
     opacity: 1;
     transition: opacity 0.5s, transform 0.5s;
     transform: translateX(0);
 }
-
 .toast-notification.fade-out {
     opacity: 0;
     transform: translateX(100%);
 }
-
-/* أنواع الإشعارات */
 .toast-notification.success { background-color: #28a745; }
 .toast-notification.warning { background-color: #ffc107; color: #333; }
 .toast-notification.info { background-color: #17a2b8; }
-
-
-/* ============================================================= */
-/* ====== زر العودة للأعلى (Back to Top) ====== */
-/* ============================================================= */
 
 /* الميزة 12: زر العودة للأعلى */
 #back-to-top {
     position: fixed;
     bottom: 20px;
-    left: 20px; /* عكس الاتجاه ليناسب اللغة العربية */
+    left: 20px; 
     background-color: var(--light-accent);
     color: white;
     width: 45px;
@@ -415,35 +460,85 @@ nav a:hover {
 .dark-mode #back-to-top {
     background-color: var(--dark-accent);
 }
-
 #back-to-top.is-visible {
     opacity: 1;
     visibility: visible;
 }
 
 /* ============================================================= */
-/* ====== التناسق مع الهاتف (Mobile Responsiveness) - المحدث ====== */
+/* ====== التذييل (Footer) ====== */
+/* ============================================================= */
+.page-footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    border-top: 2px solid var(--light-border);
+    font-size: 0.9em;
+    color: var(--light-text);
+}
+.dark-mode .page-footer {
+    border-top-color: var(--dark-border);
+    color: var(--dark-text);
+}
+
+/* ============================================================= */
+/* ====== التناسق مع الهاتف (Mobile Responsiveness) - التصحيح الحاسم ====== */
 /* ============================================================= */
 @media (max-width: 768px) {
-    /* ... (تنسيقات الهاتف الأساسية التي أرسلتها سابقاً) ... */
-
-    /* شريط البحث في الهاتف */
-    #search-bar {
-        padding: 10px 15px;
-        flex-direction: column;
-        gap: 10px;
-    }
-    #era-filter {
-        margin-left: 0;
-        width: 100%;
-    }
-    #clear-search-btn {
-        margin-left: 0;
-        position: absolute;
-        right: 25px;
-        top: 20px;
+    
+    .main-container {
+        padding: 10px;
     }
     
+    /* تصحيح الترويسة لعدم التداخل */
+    header {
+        padding: 10px 15px;
+        flex-wrap: wrap; 
+        justify-content: flex-start;
+    }
+    
+    header .logo-title {
+        font-size: 1.5em; 
+        order: 1; /* الترتيب الأول */
+        flex-grow: 1; 
+        text-align: right; 
+        margin-left: 0;
+    }
+
+    .nav-controls {
+        order: 2; /* الأيقونات تأتي بعد العنوان */
+        margin-right: 10px;
+    }
+    
+    header nav {
+        order: 10; /* الروابط في سطر جديد أسفل الجميع */
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 5px;
+    }
+    
+    /* تصحيح شريط البحث في الهاتف */
+    #search-bar {
+        padding: 10px 15px;
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    #era-filter, #search-input {
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* تحديد موقع زر مسح البحث بشكل دقيق */
+    #clear-search-btn {
+        position: absolute;
+        top: 60px; /* تقريباً منتصف شريط البحث العمودي */
+        right: 25px;
+        z-index: 10;
+        margin-left: 0; /* إلغاء التداخل السلبي */
+    }
+
     /* تصغير زر العودة للأعلى */
     #back-to-top {
         width: 40px;
@@ -460,5 +555,9 @@ nav a:hover {
     }
     .toast-notification {
         min-width: 90%;
+    }
+    
+    .archive-grid {
+        gap: 15px;
     }
 }
