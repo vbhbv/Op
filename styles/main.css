@@ -69,7 +69,7 @@ body {
 }
 
 /* ============================================================= */
-/* ====== 03. الترويسة وشريط التنقل (Header & Nav) - تم التصحيح ====== */
+/* ====== 03. الترويسة وشريط التنقل (Header & Nav) - تم إزالة position: sticky ====== */
 /* ============================================================= */
 header { 
     padding: 15px 20px; 
@@ -77,14 +77,12 @@ header {
     color: #fff;
     
     display: flex; 
-    flex-wrap: wrap; /* السماح بالتفاف العناصر في الهاتف */
+    flex-wrap: wrap; 
     justify-content: space-between;
     align-items: center;
     
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* إزالة position: sticky; لتجنب التداخل، أو تركه مع تصحيح CSS و JS */
-    position: sticky; 
-    top: 0;
+    /* ❌ تم إزالة خاصية position: sticky; */
     z-index: var(--z-index-header);
     transition: background-color 0.3s, box-shadow 0.3s;
 }
@@ -164,7 +162,7 @@ header nav a.active-nav-link { /* الميزة 11 */
 }
 
 /* ============================================================= */
-/* ====== 04. شريط البحث والتصفية (Search Bar) ====== */
+/* ====== 04. شريط البحث والتصفية (Search Bar) - تم إزالة position: sticky ====== */
 /* ============================================================= */
 .search-container {
     display: none; /* الميزة 4: مخفية افتراضياً */
@@ -173,8 +171,7 @@ header nav a.active-nav-link { /* الميزة 11 */
     padding: 10px 20px;
     background-color: var(--light-card-bg);
     border-bottom: 1px solid var(--light-border);
-    position: sticky;
-    top: 60px; /* تحت الترويسة */
+    /* ❌ تم إزالة خاصية position: sticky; وتوابعها */
     z-index: var(--z-index-search);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
@@ -585,7 +582,6 @@ header nav a.active-nav-link { /* الميزة 11 */
     /* تصحيح مشكلة الترويسة والتداخل (الحل الذي طلبته) */
     header {
         padding: 10px 15px;
-        /* السماح للعنوان والأزرار بالاحتلال في السطر الأول، والروابط في الثاني */
         flex-direction: row; 
         align-items: flex-start;
     }
@@ -605,7 +601,7 @@ header nav a.active-nav-link { /* الميزة 11 */
     header nav {
         order: 3; 
         margin-top: 8px;
-        flex-basis: 100%; /* ضمان احتلال شريط التنقل لسطر كامل */
+        flex-basis: 100%; 
         justify-content: space-around;
         gap: 0;
     }
@@ -621,12 +617,11 @@ header nav a.active-nav-link { /* الميزة 11 */
     
     .search-container {
         flex-direction: column;
-        top: 50px; /* ضبط الموضع بعد تصغير الترويسة */
+        /* لم تعد ثابتة، لذا لم نعد بحاجة إلى top: 50px */
         padding: 10px 15px;
     }
 
     .search-container.is-visible {
-        /* عند التفعيل، اجعل البحث يمتد لأسفل */
         align-items: stretch;
     }
 
@@ -655,7 +650,7 @@ header nav a.active-nav-link { /* الميزة 11 */
     
     /* ترتيب الإشعارات لتجنب التداخل مع زر العودة للأعلى */
     #toast-container {
-        bottom: 70px; /* رفع الإشعارات فوق زر العودة للأعلى */
+        bottom: 70px; 
         right: 15px;
     }
 }
