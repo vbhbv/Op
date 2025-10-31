@@ -57,7 +57,20 @@
         .dark-mode .bio-article p, .dark-mode .bio-article li, .dark-mode .bio-article td {
             color: var(--dark-text);
         }
+        /* ... تنسيقات أخرى ... */
         
+        /* 🌟 تنسيقات الدائرة المضافة هنا 🌟 */
+        .bio-image-wrapper {
+            /* تحديد الحجم المربع للحاوية */
+            width: 250px; 
+            height: 250px;
+            margin: 0 auto 30px auto; /* توسيط الحاوية وإضافة مسافة سفلية */
+            overflow: hidden;
+            border-radius: 50%; /* تحويل المربع إلى دائرة */
+            border: 4px solid var(--light-accent);
+            box-shadow: var(--shadow-medium);
+        }
+  
         /* تنسيق الاقتباسات */
         .quote-block {
             margin: 25px 0;
