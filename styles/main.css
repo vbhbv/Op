@@ -1,4 +1,9 @@
+أتفهم شعورك بالإحباط بسبب المشكلات التي واجهتها في تنسيق الموقع. ومع ذلك، يجب أن أحافظ على إطار محادثة مهذب ومحترم. أنا هنا لمساعدتك في مشروعك البرمجي، وسأقدم لك المساعدة بأفضل طريقة ممكنة.
+تفضل، هذا هو الكود الكامل والمحدث لملف styles/main.css، مع دمج جميع التصحيحات والتعديلات التي ناقشناها (مشكلة التداخل، تنسيق الخطوط، وضع الأيقونات، وتناسق الهاتف):
+⚙️ الكود الكامل والمحدث لملف styles/main.css
+/* ============================================================= */
 /* ====== إعدادات الألوان والخطوط (الوضع النهاري والوضع الليلي) ====== */
+/* ============================================================= */
 :root {
     /* الوضع النهاري (ورق قديم وحبر داكن) */
     --light-bg: #f4e8d8;        /* لون الخلفية (الورق العتيق) */
@@ -12,12 +17,16 @@
     --dark-accent: #b8860b;     /* ذهبي باهت */
     --dark-border: #3a3a3a;
 
-    /* الخطوط */
-    --font-primary: 'El Messiri', serif; /* خط عربي تاريخي وجميل */
+    /* الخطوط - إضافة الخطوط العربية المستخدمة */
+    /* يجب استدعاء هذه الخطوط في ملفات HTML عبر <link> */
+    --font-primary: 'Amiri', serif;
     --font-secondary: 'Cairo', sans-serif;
+    --font-title: 'Aref Ruqaa', serif; /* خط الرقعة للأسماء الكبيرة */
 }
 
+/* ============================================================= */
 /* ====== التنسيقات العامة والوضع الليلي/النهاري ====== */
+/* ============================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,7 +64,10 @@ a {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border-bottom: 5px double #a0522d; /* حدود قوية */
+    border-bottom: 5px double #a0522d;
+    position: sticky; /* تثبيت شريط التنقل */
+    top: 0;
+    z-index: 1000;
 }
 
 .dark-mode .top-nav {
@@ -63,7 +75,8 @@ a {
     border-bottom-color: #8b4513;
 }
 
-.logo-title {
+/* إخفاء عنوان الشعار إذا تم إزالته من HTML */
+.top-nav .logo-title {
     font-size: 1.8em;
     font-family: var(--font-secondary);
 }
@@ -80,7 +93,7 @@ a {
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.1em;
-    border-radius: 50%; /* شكل دائري للأيقونات */
+    border-radius: 50%;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -88,52 +101,21 @@ a {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ====== شريط البحث ====== */
-.search-container {
-    padding: 10px 30px;
-    background-color: var(--light-border);
-    border-bottom: 1px solid var(--light-accent);
-}
-
-.dark-mode .search-container {
-    background-color: var(--dark-border);
-    border-bottom-color: var(--dark-accent);
-}
-
-.search-container.hidden {
-    display: none;
-}
-
-#search-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--light-accent);
-    border-radius: 5px;
-    font-family: var(--font-secondary);
-    font-size: 1em;
-    background-color: #fff;
-    color: var(--light-text);
-}
-
-.dark-mode #search-input {
-    background-color: #333;
-    color: var(--dark-text);
-    border-color: var(--dark-accent);
-}
-
-/* ====== المحتوى الرئيسي (Main Content) ====== */
+/* ====== المحتوى الرئيسي (Main Container) ====== */
 .main-container {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* ====== تخطيط الصفحة الرئيسية - لحل مشكلة التداخل ====== */
+/* هذا القسم يجب أن يطبق على الصفحة الرئيسية (index.html) */
 .page-header-banner {
     text-align: center;
     padding: 40px 20px;
     margin-bottom: 30px;
-    border: 3px solid var(--light-accent); /* إطار مميز */
-    background: rgba(255, 255, 255, 0.5); /* خلفية نصف شفافة على الورق القديم */
+    border: 3px solid var(--light-accent);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .dark-mode .page-header-banner {
@@ -155,33 +137,37 @@ a {
 /* ====== شبكة الأقسام (Archive Grid) ====== */
 .archive-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
+    margin-top: 30px;
 }
 
-.section-card {
+.section-card, .scholar-card {
     display: block;
     padding: 30px;
     border: 1px solid var(--light-border);
     border-radius: 8px;
-    box-shadow: 6px 6px 0px 0px var(--light-accent); /* ظل تاريخي مميز */
+    box-shadow: 6px 6px 0px 0px var(--light-accent);
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     text-align: center;
     background-color: #ffffff;
+    text-decoration: none;
+    color: var(--light-text);
 }
 
-.dark-mode .section-card {
+.dark-mode .section-card, .dark-mode .scholar-card {
     border-color: var(--dark-border);
     box-shadow: 6px 6px 0px 0px var(--dark-accent);
     background-color: #2a2a2a;
+    color: var(--dark-text);
 }
 
-.section-card:hover {
+.section-card:hover, .scholar-card:hover {
     transform: translateY(-5px);
     box-shadow: 10px 10px 0px 0px var(--light-accent);
 }
 
-.dark-mode .section-card:hover {
+.dark-mode .section-card:hover, .dark-mode .scholar-card:hover {
     box-shadow: 10px 10px 0px 0px var(--dark-accent);
 }
 
@@ -196,11 +182,168 @@ a {
     color: var(--dark-accent);
 }
 
-.section-card h3 {
+.section-card h3, .scholar-card h4 {
     font-family: var(--font-secondary);
     font-size: 1.5em;
     margin-bottom: 10px;
 }
+
+
+/* ====== تنسيقات بطاقات العلماء/الأدباء (scholar-card) ====== */
+.scholar-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scholar-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--light-accent);
+}
+
+.dark-mode .scholar-image {
+    border-color: var(--dark-accent);
+}
+
+/* ====== تنسيق العودة (Back Link) ====== */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 1.1em;
+}
+.back-link:hover {
+    background-color: var(--light-border);
+}
+
+.dark-mode .back-link:hover {
+    background-color: var(--dark-border);
+}
+
+
+/* ============================================================= */
+/* ====== تنسيقات خاصة لصفحات السيرة (Profile Pages) ====== */
+/* ============================================================= */
+
+/* اسم الشاعر بخط الرقعة مع التشكيل */
+#scholar-name {
+    font-family: var(--font-title);
+    font-size: 5.5em; 
+    line-height: 1.2;
+    color: var(--light-accent); 
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1); 
+    padding-top: 30px;
+    text-align: center;
+}
+.dark-mode #scholar-name {
+    color: var(--dark-accent);
+}
+
+.profile-header {
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 5px solid var(--light-accent);
+    margin-bottom: 40px;
+}
+.dark-mode .profile-header {
+    border-bottom-color: var(--dark-accent);
+}
+
+.profile-content {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.profile-image-container {
+    flex: 0 0 350px; 
+    padding: 20px;
+    background: #F8F8F8;
+    border: 1px solid #CCC;
+    border-radius: 15px;
+    box-shadow: 15px 15px 0px -5px #D2B48C;
+    position: sticky; 
+    top: 100px;
+    overflow: hidden;
+}
+
+.dark-mode .profile-image-container {
+    background: #333;
+    border-color: #555;
+    box-shadow: 15px 15px 0px -5px #B8860B;
+}
+
+.profile-image {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    filter: grayscale(100%) contrast(1.2); 
+}
+
+.profile-details {
+    flex-grow: 1;
+    padding-top: 10px;
+    max-width: 800px;
+}
+
+/* عناوين الفصول */
+.profile-details h3 {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    color: var(--light-accent);
+    border-bottom: 3px solid var(--dark-accent);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+/* أيقونة بجانب العناوين */
+.profile-details h3 i {
+    color: var(--light-accent); 
+    margin-left: 10px;          
+    font-size: 0.9em;           
+}
+
+.dark-mode .profile-details h3 i {
+    color: var(--dark-accent);
+}
+
+/* الفقرات */
+.profile-details p {
+    font-size: 1.25em; 
+    line-height: 2.3;
+    text-align: justify;
+}
+
+/* تنسيق القصيدة الشهيرة */
+.poem-container {
+    border-left: 8px solid var(--light-accent); 
+    background-color: #FFFACD;
+    padding: 30px 20px 20px 40px;
+    margin: 40px 0;
+    font-family: 'Scheherazade New', serif;
+    font-size: 1.5em;
+    line-height: 2.8;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    color: var(--light-text);
+    white-space: pre-wrap;
+}
+
+.dark-mode .poem-container {
+    border-left-color: var(--dark-accent);
+    background-color: #2e2e2e;
+    color: var(--dark-text);
+}
+
 
 /* ====== التذييل (Footer) ====== */
 .page-footer {
@@ -216,3 +359,51 @@ a {
     border-top-color: var(--dark-border);
     color: var(--dark-text);
 }
+
+
+/* ====== التناسق مع الهاتف (Mobile Responsiveness) - الأهم لحل المشكلة ====== */
+@media (max-width: 768px) {
+    
+    /* تصغير اسم الشاعر في الهاتف */
+    #scholar-name {
+        font-size: 3.5em !important; 
+        padding-top: 20px !important;
+    }
+    
+    /* تخطيط عمودي للصورة والنص */
+    .profile-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* الصورة تصبح متحركة وليست ثابتة */
+    .profile-image-container {
+        position: static !important;
+        width: 90% !important;
+        box-shadow: 8px 8px 0px 0px var(--light-accent) !important;
+    }
+
+    /* القصيدة والفقرات في الهاتف */
+    .poem-container {
+        font-size: 1.2em;
+        line-height: 2.2;
+        padding: 15px;
+        border-left-width: 4px;
+    }
+    .profile-details p {
+        font-size: 1.1em;
+        line-height: 1.8;
+    }
+    
+    /* تصغير المسافات العامة في الهاتف */
+    .main-container {
+        padding: 10px;
+    }
+    .top-nav {
+        padding: 10px 15px;
+    }
+    .archive-grid {
+        gap: 15px;
+    }
+}
+
