@@ -1,14 +1,4 @@
-// دوال الدعم الأساسية: يجب وضع هذه الدوال خارج دالة document.addEventListener
-
-// الميزة 32: دالة Debounce (لتأخير تنفيذ البحث)
-function debounce(func, delay) {
-    let timeout;
-    return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
+// دوال الدعم الأساسية
 // الميزة 18 & 30: دالة الإشعارات المؤقتة (Toast Notifications)
 function showToastNotification(message, type = 'info') {
     let toastContainer = document.getElementById('toast-container');
@@ -25,13 +15,13 @@ function showToastNotification(message, type = 'info') {
     // إخفاء الإشعار بعد 4 ثوانٍ
     setTimeout(() => {
         toast.classList.add('fade-out');
-        // إزالة الإشعار من الـ DOM بعد انتهاء التحول
         toast.addEventListener('transitionend', () => toast.remove());
     }, 4000);
     
     // الميزة 30: إغلاق الإشعار عند النقر عليه
     toast.addEventListener('click', () => toast.remove()); 
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // ⚙️ العناصر الأساسية (Cached Selectors)
@@ -46,12 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header'); 
     const filterSelect = document.getElementById('era-filter'); 
     const clearSearchButton = document.getElementById('clear-search-btn');
-    const loadingMessageElement = document.getElementById('loading-message'); // الميزة 31
-    const resultsCountElement = document.getElementById('results-count'); // الميزة 36
+    const loadingMessageElement = document.getElementById('loading-message'); 
+    const resultsCountElement = document.getElementById('results-count');
 
-    let allScholarsData = []; 
-    const DATA_CACHE_KEY = 'archiveDataCache'; // الميزة 33
-    const CACHE_DURATION = 3600000; // الميزة 33: ساعة واحدة
+    // 🛑 تم حذف جميع المتغيرات والدوال المتعلقة بتحميل ومعالجة JSON
 
     // =============================================================
     // I. تحسينات الوضع الليلي/النهاري (Enhanced Mode Toggle)
@@ -89,11 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // =============================================================
-    // II. تحسينات وظائف البحث والتصفية (Advanced Search & Filter)
+    // II. تحسينات وظائف البحث والتصفية (Manual Search & Filter)
     // =============================================================
     
-    const debouncedFiltering = debounce(applyFiltering, 300); // الميزة 32
-
+    // 🛑 تم حذف دالة debounce
+    
+    // 🛑 وظيفة البحث والتصفية الآن تعتمد على DOM مباشرة (لأننا أزلنا مصفوفة البيانات)
     function applyFiltering() {
         const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
         const selectedEra = filterSelect ? filterSelect.value : 'all'; 
@@ -102,23 +91,44 @@ document.addEventListener('DOMContentLoaded', () => {
             clearSearchButton.style.display = searchTerm ? 'block' : 'none';
         }
 
-        const filteredScholars = allScholarsData.filter(scholar => {
-            const matchesSearch = scholar.name.toLowerCase().includes(searchTerm) ||
-                                  scholar.bio_snippet.toLowerCase().includes(searchTerm) ||
-                                  scholar.era.toLowerCase().includes(searchTerm);
-                                  
-            const matchesEra = selectedEra === 'all' || scholar.era === selectedEra;
+        let visibleCount = 0;
+        const cards = document.querySelectorAll('.scholar-card');
+
+        cards.forEach(card => {
+            const name = card.querySelector('.scholar-name').textContent.toLowerCase();
+            const bio = card.querySelector('.scholar-bio-snippet').textContent.toLowerCase();
+            const era = card.querySelector('.era-tag').textContent;
             
-            return matchesSearch && matchesEra;
+            const matchesSearch = name.includes(searchTerm) || bio.includes(searchTerm);
+                                  
+            const matchesEra = selectedEra === 'all' || era === selectedEra;
+            
+            if (matchesSearch && matchesEra) {
+                card.style.display = 'flex'; // إظهار البطاقة
+                visibleCount++;
+            } else {
+                card.style.display = 'none'; // إخفاء البطاقة
+            }
         });
         
-        if (filteredScholars.length === 0) {
-             displayNoResults(scholarCardsContainer);
-        } else {
-             displayScholarCards(filteredScholars, scholarCardsContainer);
+        // رسالة لا توجد نتائج
+        if (visibleCount === 0 && scholarCardsContainer) {
+             scholarCardsContainer.innerHTML = `<div class="no-results-message"><p>😔 عذراً، لم يتم العثور على نتائج مطابقة لطلبك.</p></div>`;
+             // إعادة إضافة البطاقات بعد ظهورها
+             cards.forEach(card => scholarCardsContainer.appendChild(card));
+        } else if (visibleCount > 0 && scholarCardsContainer.querySelector('.no-results-message')) {
+            // إزالة رسالة لا توجد نتائج إذا كانت موجودة
+             const noResults = scholarCardsContainer.querySelector('.no-results-message');
+             if (noResults) noResults.remove();
+        }
+
+        // 🛑 تم حذف تحديث عدد النتائج (resultsCountElement) لأنه يتطلب البيانات الكلية
+        
+        // يجب أن تظهر التصفية إذا كانت البطاقات مكتوبة يدوياً في HTML
+        if(filterSelect && body.id !== 'main-page') {
+            filterSelect.style.display = 'inline-block';
         }
     }
-
 
     if (searchButton && searchBar && searchInput) {
         searchButton.addEventListener('click', () => {
@@ -128,9 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.addEventListener('keydown', handleEscapeKey);
                 searchButton.querySelector('i').className = 'fas fa-times';
 
-                if(allScholarsData.length > 0 && filterSelect && body.id !== 'main-page') {
-                    filterSelect.style.display = 'inline-block';
-                }
             } else {
                 document.removeEventListener('keydown', handleEscapeKey);
                 searchButton.querySelector('i').className = 'fas fa-search';
@@ -149,8 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        searchInput.addEventListener('input', debouncedFiltering);
-
+        searchInput.addEventListener('input', applyFiltering); // 🛑 بدون Debounce
+        
         if (clearSearchButton) {
             clearSearchButton.addEventListener('click', () => {
                 searchInput.value = '';
@@ -162,174 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filterSelect) {
             filterSelect.addEventListener('change', applyFiltering);
         }
+
     }
     
+    // 🛑 تم حذف جميع وظائف تحميل ومعالجة البيانات (loadArchiveData و processData)
+    // 🛑 تم حذف دالة populateEraFilter (التصفية تتم يدوياً الآن عبر DOM)
+
+
     // =============================================================
-    // III. تحسينات تحميل وعرض البيانات (Optimized Data Handling)
-    // =============================================================
-    
-    function createScholarCard(scholar) {
-        const card = document.createElement('a');
-        
-        // 🚨 التصحيح: يجب إضافة ".html" يدوياً لأن ID لم يعد يحتوي عليه
-        card.href = `pages/${scholar.id}.html`; 
-        
-        card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
-        card.classList.add('scholar-card');
-        
-        card.addEventListener('mouseover', () => card.classList.add('hover-shake')); 
-        card.addEventListener('animationend', () => card.classList.remove('hover-shake'));
-
-        const iconHtml = scholar.featured ? 
-            '<span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>' : ''; 
-        
-        card.innerHTML = `
-            <div class="scholar-image-wrapper">
-                <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../Images/placeholder.webp';">
-            </div>
-            <div class="scholar-info">
-                ${iconHtml}
-                <h4 class="scholar-name">${scholar.name}</h4>
-                <p class="scholar-bio-snippet">${scholar.bio_snippet}</p>
-                <span class="era-tag">${scholar.era}</span>
-            </div>
-        `;
-        return card;
-    }
-
-    function displayScholarCards(scholars, container) {
-        if (container) {
-            container.innerHTML = ''; 
-            const fragment = document.createDocumentFragment();
-            
-            scholars.forEach(scholar => {
-                fragment.appendChild(createScholarCard(scholar));
-            });
-            
-            container.appendChild(fragment);
-            observeNewCards(); // الميزة 15
-            updateResultCount(scholars.length); // الميزة 36
-        }
-    }
-    
-    function displayNoResults(container) {
-        if (container) {
-            container.innerHTML = `<div class="no-results-message"><p>😔 عذراً، لم يتم العثور على نتائج مطابقة لطلبك.</p></div>`;
-            updateResultCount(0); // الميزة 36
-        }
-    }
-    
-    function updateResultCount(count) { // الميزة 36
-        const total = allScholarsData.length;
-        if (resultsCountElement && total > 0) {
-            resultsCountElement.textContent = `عرض ${count} من أصل ${total} شخصية`;
-            resultsCountElement.style.display = 'block';
-        } else if (resultsCountElement) {
-             resultsCountElement.style.display = 'none';
-        }
-    }
-
-    function setLoadingState(isLoading, message = 'جارِ تحميل البيانات...') { // الميزة 31
-        if (loadingMessageElement) {
-            loadingMessageElement.innerHTML = isLoading ? `<div class="loader-spinner"></div><p>${message}</p>` : '';
-            loadingMessageElement.style.display = isLoading ? 'flex' : 'none';
-        }
-        if (scholarCardsContainer) {
-            scholarCardsContainer.style.display = isLoading ? 'none' : 'grid'; 
-        }
-    }
-
-
-    async function loadArchiveData() {
-        if (!scholarCardsContainer || body.id === 'main-page') return; 
-
-        setLoadingState(true); 
-
-        const cachedData = localStorage.getItem(DATA_CACHE_KEY);
-        if (cachedData) {
-            const { data, timestamp } = JSON.parse(cachedData);
-            if (Date.now() - timestamp < CACHE_DURATION) {
-                showToastNotification('تم تحميل البيانات من الذاكرة المؤقتة بنجاح.', 'info');
-                processData(data);
-                setLoadingState(false);
-                return;
-            } else {
-                localStorage.removeItem(DATA_CACHE_KEY);
-            }
-        }
-
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => { 
-                controller.abort();
-                showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
-            }, 5000); 
-            
-            // 🚨 مسار التحميل: تم افتراض ./archive.json لوجوده داخل مجلد pages/
-            const response = await fetch('./archive.json', { signal: controller.signal });
-            clearTimeout(timeoutId);
-            
-            if (!response.ok) { 
-                 throw new Error('فشل في تحميل ملف البيانات.'); 
-            }
-            
-            const data = await response.json();
-            
-            localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
-
-            processData(data);
-            showToastNotification('✅ تم تحميل بيانات الأرشيف بنجاح.', 'success');
-
-        } catch (error) {
-             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك، أو تأكد من وجود ملف archive.json في مجلد pages.');
-             console.error("Data loading error:", error);
-        } finally {
-            setLoadingState(false);
-        }
-    }
-
-    function processData(data) {
-        let dataToDisplay = [];
-        const uniqueEras = new Set(); 
-
-        if (document.body.id === 'arab-writers-page') {
-            dataToDisplay = data.arabWriters || []; 
-        } else if (document.body.id === 'arab-scientists-page') {
-             dataToDisplay = data.arabScientists || [];
-        } 
-
-        dataToDisplay.forEach(scholar => uniqueEras.add(scholar.era));
-
-        dataToDisplay.sort((a, b) => a.name.localeCompare(b.name)); 
-
-        allScholarsData = dataToDisplay; 
-        displayScholarCards(allScholarsData, scholarCardsContainer);
-        populateEraFilter(uniqueEras); 
-    }
-    
-    function populateEraFilter(eras) { 
-        if (filterSelect) {
-            filterSelect.innerHTML = '<option value="all">جميع العصور</option>';
-            
-            Array.from(eras).sort().forEach(era => { 
-                const option = document.createElement('option');
-                option.value = era;
-                option.textContent = era;
-                filterSelect.appendChild(option);
-            });
-            
-            filterSelect.style.display = eras.size > 0 ? 'inline-block' : 'none'; 
-        }
-    }
-
-    if (document.body.id && document.body.id !== 'main-page') {
-         loadArchiveData(); 
-    }
-    
-    // =============================================================
-    // IV. ميزات جمالية وتقنية إضافية
+    // III. ميزات جمالية وتقنية إضافية
     // =============================================================
     
+    // الميزة 10/11: الرابط النشط
     const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
         link.classList.remove('active-nav-link');
@@ -339,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // الميزة 12/13/16: زر العودة للأعلى
     if (backToTopButton) {
         const toggleBackToTop = () => {
              if (window.scrollY > 300) {
@@ -359,9 +211,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBackToTop(); 
     }
     
+    // الميزة 17: التحقق من الاتصال بالإنترنت
     function checkConnectivity() {
         if (!navigator.onLine) {
-            showToastNotification("⚠️ أنت غير متصل بالإنترنت. قد تكون البيانات قديمة.", 'warning'); 
+            showToastNotification("⚠️ أنت غير متصل بالإنترنت.", 'warning'); 
         }
     }
     
@@ -370,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkConnectivity();
 
     
+    // الميزة 14/15: مراقب التقاطع (لتحريك البطاقات عند الظهور)
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -386,7 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+    
+    // تطبيق المراقب على البطاقات الموجودة يدوياً
+    observeNewCards();
 
+    // الميزة 38: اختصار لوحة المفاتيح العالمية (CTRL + K)
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'k') {
             e.preventDefault(); 
@@ -406,8 +264,5 @@ document.addEventListener('DOMContentLoaded', () => {
              console.log('Mode Toggled', body.classList.contains('dark-mode') ? 'Dark' : 'Light');
         });
     }
-    
-    if (document.body.id === 'main-page') {
-        observeNewCards();
-    }
+
 });
