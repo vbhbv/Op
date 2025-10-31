@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>أدباء وشعراء عرب - سجل المؤثرين الخالدين</title>
-    </head>
+    
+    <meta name="description" content="غص في بحور الكلمة، واستكشف عوالم الإبداع لأعظم فرسان القلم والشعر في تاريخنا العربي المجيد.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* التنسيقات الخاصة بالعنوان */
+        .page-header-banner h2 {
+            font-family: 'Scheherazade New', serif;
+            font-size: 3.5em; 
+            color: var(--light-accent);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .dark-mode .page-header-banner h2 {
+            color: var(--dark-accent);
+        }
+        .page-header-banner p {
+            font-size: 1.2em;
+            color: var(--light-text);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.8;
+        }
+        .dark-mode .page-header-banner p {
+            color: var(--dark-text);
+        }
+    </style>
+</head>
 <body class="light-mode" id="arab-writers-page"> 
 
     <header>
-        </header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
     
     <div id="search-bar" class="search-container">
         <select id="era-filter" title="تصفية حسب العصر">
@@ -16,6 +63,7 @@
         </select>
         
         <input type="text" id="search-input" placeholder="ابحث في سجلات الأدباء..." />
+        
         <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
     </div>
 
@@ -55,8 +103,21 @@
             </section>
     </main>
     
-    <footer>
-        </footer>
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
 
     <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
 
