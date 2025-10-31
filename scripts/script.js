@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // التأكد من أن جميع العناصر موجودة قبل محاولة استخدامها
     const toggleButton = document.getElementById('mode-toggle');
     const searchButton = document.getElementById('search-btn');
     const searchBar = document.getElementById('search-bar');
@@ -12,25 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // تحميل الوضع المحفوظ والتعيين المبدئي
     const savedMode = localStorage.getItem('mode') || 'light-mode';
-    body.className = savedMode;
-    if (toggleButton) {
-        updateModeIcon(savedMode);
-    }
+    // التأكد من أن body لا يحمل وضعاً قديماً قبل إضافة الوضع الجديد
+    body.className = body.className.split(' ').filter(c => c !== 'light-mode' && c !== 'dark-mode').join(' ') + ' ' + savedMode;
+    
 
     function updateModeIcon(currentMode) {
-        // تحديث أيقونة الزر لتعكس الوضع الذي سيتم التحويل إليه
-        // fas fa-sun (شمس) لوضع النهار، fas fa-moon (قمر) لوضع الليل
-        toggleButton.innerHTML = (currentMode === 'dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        if (toggleButton) {
+             // تحديد الأيقونة المناسبة (شمس للنهاري، قمر لليلي)
+             toggleButton.innerHTML = (currentMode === 'dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
     }
     
-    // إضافة معالج الحدث فقط إذا كان الزر موجوداً
+    // تشغيل تحديث الأيقونة عند التحميل
     if (toggleButton) {
+        updateModeIcon(savedMode);
+
         toggleButton.addEventListener('click', () => {
             const newMode = body.classList.contains('light-mode') ? 'dark-mode' : 'light-mode';
             
-            // استخدام replace آمن دائماً لتغيير الكلاس
-            body.classList.replace(body.className.split(' ').filter(c => c !== 'light-mode' && c !== 'dark-mode').join(' ') + ' ' + body.className, newMode);
-            
+            // تبديل الكلاسات بأمان
+            const classes = body.className.split(' ').filter(c => c !== 'light-mode' && c !== 'dark-mode');
+            body.className = classes.join(' ') + ' ' + newMode;
+
             localStorage.setItem('mode', newMode);
             updateModeIcon(newMode);
         });
@@ -40,86 +42,96 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. وظائف البحث (Search Functions)
     // =============================================================
     
-    // إضافة معالج الحدث فقط إذا كانت جميع عناصر البحث موجودة
+    // التأكد من وجود جميع عناصر البحث قبل إضافة المستمعين
     if (searchButton && searchBar && searchInput) {
         searchButton.addEventListener('click', () => {
-            // تبديل حالة كلاس "hidden"
             searchBar.classList.toggle('hidden');
             if (!searchBar.classList.contains('hidden')) {
                 searchInput.focus();
             }
         });
-    }
-
-    // =============================================================
-    // 3. وظائف تحميل وعرض البيانات (Data Loading & Display) - تم تعديل المسار
-    // =============================================================
-    
-    async function loadArchiveData() {
-        try {
-            // استخدام مسار آمن نسبي (لصفحات الأقسام)
-            const response = await fetch('../data.json'); 
-            if (!response.ok) {
-                // إذا فشل المسار النسبي، جرب المسار المطلق للجذر (لصفحات داخل pages/)
-                const rootResponse = await fetch('data.json');
-                 if (!rootResponse.ok) {
-                     throw new Error(`HTTP error! status: ${rootResponse.status}`);
-                 }
-                 const archiveData = await rootResponse.json();
-                 processData(archiveData);
-                 return;
-            }
-            const archiveData = await response.json();
-            processData(archiveData);
-
-        } catch (error) {
-            console.error("خطأ حرج في تحميل بيانات الأرشيف:", error);
-        }
-    }
-    
-    function processData(archiveData) {
-         // هذه الوظيفة تستخدم فقط في صفحات الأقسام، ولن تعمل في index.html
-         // لكن نحافظ عليها لصفحات مثل arab_writers.html
-         const bodyId = document.body.id;
-         let currentData = null;
-         let containerId = 'scholar-cards-container';
-         
-         if (bodyId === 'arab-scientists-page') {
-             currentData = archiveData.arab_scientists;
-         } else if (bodyId === 'arab-writers-page') {
-             currentData = archiveData.arab_writers;
-         }
-         
-         if (currentData && containerId) {
-             displayScholarCards(currentData, containerId);
-         }
-    }
-
-    function displayScholarCards(scholars, containerId) {
-        // [وظيفة عرض البطاقات كما هي]
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        container.innerHTML = ''; 
-
-        scholars.forEach(scholar => {
-            const card = document.createElement('a');
-            card.href = `scholar_profile.html?id=${scholar.id}`; 
-            card.className = 'scholar-card';
-            card.innerHTML = `
-                <img src="../images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image">
-                <div class="scholar-info">
-                    <h4 class="scholar-name">${scholar.name}</h4>
-                    <p class="scholar-bio-snippet">${scholar.bio.substring(0, 70)}...</p>
-                    <span class="era-tag">${scholar.era}</span>
-                </div>
-            `;
-            container.appendChild(card);
+        
+        // يمكن إضافة وظيفة التصفية/البحث هنا لاحقاً
+        searchInput.addEventListener('keyup', (e) => {
+            // [هنا يمكن إضافة كود التصفية حسب الإدخال]
         });
     }
 
-    // يتم تشغيل تحميل البيانات فقط إذا كان في صفحة قسم
-    if (document.body.id && document.body.id.includes('-page')) {
-        loadArchiveData();
+
+    // =============================================================
+    // 3. وظائف تحميل وعرض البيانات (لصفحات الأرشيف التي تحتاج JSON)
+    // =============================================================
+    
+    // دالة إنشاء بطاقة لعرضها
+    function createScholarCard(scholar) {
+        const card = document.createElement('a');
+        card.href = `pages/${scholar.id}.html`; // يجب أن يكون مسار الصفحات هكذا
+        card.classList.add('scholar-card');
+        card.classList.add(`${scholar.id}-card`); // لإضافة تنسيق خاص (مثل joahire-card)
+        
+        // إنشاء محتوى البطاقة (صورة، اسم، نبذة)
+        card.innerHTML = `
+            <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image">
+            <div class="scholar-info">
+                <h4 class="scholar-name">${scholar.name}</h4>
+                <p class="scholar-bio-snippet">${scholar.bio_snippet}</p>
+                <span class="era-tag">${scholar.era}</span>
+            </div>
+        `;
+        return card;
     }
+
+    // دالة لعرض البطاقات في الحاوية المحددة
+    function displayScholarCards(scholars, containerId) {
+        const container = document.getElementById(containerId);
+        if (container) {
+            // تفريغ الحاوية قبل الإضافة لمنع التكرار (هنا يتم إزالة الكود اليدوي)
+            container.innerHTML = ''; 
+            
+            scholars.forEach(scholar => {
+                container.appendChild(createScholarCard(scholar));
+            });
+        }
+    }
+
+    // دالة تحميل البيانات من ملف JSON
+    async function loadArchiveData() {
+        try {
+            // نفترض أن ملف البيانات هو data/archive.json
+            const response = await fetch('../data/archive.json');
+            if (!response.ok) {
+                throw new Error('فشل في تحميل ملف البيانات: ' + response.statusText);
+            }
+            const data = await response.json();
+            
+            // تحديد الصفحة الحالية لعرض البيانات المناسبة
+            if (document.body.id === 'arab-writers-page') {
+                displayScholarCards(data.arabWriters, 'scholar-cards-container');
+            } 
+            // يمكن إضافة أقسام أخرى هنا لاحقاً
+            
+        } catch (error) {
+            console.error('خطأ في معالجة بيانات الأرشيف:', error);
+            // في حالة الخطأ، نترك الكود اليدوي في HTML كما هو (لكن لا يجب مسحه في البداية)
+        }
+    }
+
+    // =============================================================
+    // 🚨 نقطة التوقف الحالية لمنع الاختفاء 🚨
+    // =============================================================
+    
+    // الكود اليدوي هنا كان:
+    // if (document.body.id && document.body.id.includes('-page')) {
+    //     loadArchiveData(); 
+    // }
+    
+    // **الحل المؤقت:** عدم تشغيل loadArchiveData() تلقائياً
+    // إذا كنت تخطط للاعتماد على الكود المكتوب يدوياً في arab_writers.html، 
+    // فمن الأفضل عدم تشغيل دالة loadArchiveData() في هذه الصفحة أبداً.
+    
+    // **الحل البديل:** إذا أردت استخدام JSON في المستقبل، يجب إزالة البطاقات المكتوبة يدوياً من HTML.
+    
+    // في الوقت الحالي، سنترك دالة loadArchiveData معطلة لمنع الاختفاء
+    // حتى تتمكن من رؤية البطاقات اليدوية بشكل دائم.
+
 });
