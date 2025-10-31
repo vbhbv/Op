@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createScholarCard(scholar) {
         const card = document.createElement('a');
         
-        // 🚨 تصحيح الرابط: نستخدم scholar.id مباشرة لأنه يحتوي الآن على امتداد .html
+        // استخدام scholar.id مباشرة لأنه يحتوي الآن على امتداد .html
         card.href = `pages/${scholar.id}`; 
         
         card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
@@ -280,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // 🔄 تم إرجاع المسار إلى وضعه الأصلي (النسبي)
-            const response = await fetch('../data/archive.json', { signal: controller.signal });
+            // 🚨 المسار المطلق لحل مشكلة فشل التحميل في بعض الخوادم
+            const response = await fetch('/data/archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
             if (!response.ok) { throw new Error('فشل في تحميل ملف البيانات.'); }
@@ -295,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
              setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
              console.error("Data loading error:", error);
+             // 💡 نصيحة: إذا استمرت المشكلة، حاول تغيير المسار هنا إلى '../data/archive.json' مرة أخرى
         } finally {
             setLoadingState(false);
         }
