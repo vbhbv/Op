@@ -97,6 +97,27 @@
         .dark-mode .info-table th {
              background-color: var(--dark-accent);
         }
+        
+        /* 🌟 تنسيقات الدائرة المضافة هنا 🌟 */
+        .bio-image-wrapper {
+            /* تحديد الحجم المربع للحاوية */
+            width: 250px; 
+            height: 250px;
+            margin: 0 auto 30px auto; /* توسيط الحاوية وإضافة مسافة سفلية */
+            overflow: hidden;
+            border-radius: 50%; /* تحويل المربع إلى دائرة */
+            border: 4px solid var(--light-accent);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .bio-image {
+            /* ضمان أن الصورة تملأ الحاوية الدائرية */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        /* 🌟 نهاية تنسيقات الدائرة 🌟 */
+
     </style>
 </head>
 <body class="light-mode" id="scholar-profile-page"> 
