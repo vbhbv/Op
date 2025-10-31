@@ -10,7 +10,11 @@
     
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght=400;700&family=Cairo:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght{
+    "query": "جبر",
+    "answer": "الجبر (Algebra) هو فرع من الرياضيات يتعامل مع العلاقات والكميات، حيث تمثل الأعداد المجهولة برموز. تعود أصوله إلى العالم العربي، تحديدًا من كتاب \"الكتاب المختصر في حساب الجبر والمقابلة\" لمحمد بن موسى الخوارزمي، ومنه اشتق الاسم."
+}
+400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* التنسيقات العامة للمقالات السيرية */
@@ -97,6 +101,27 @@
         .dark-mode .info-table th {
              background-color: var(--dark-accent);
         }
+        
+        /* 🌟 تنسيقات الدائرة المضافة هنا 🌟 */
+        .bio-image-wrapper {
+            /* تحديد الحجم المربع للحاوية */
+            width: 250px; 
+            height: 250px;
+            margin: 0 auto 30px auto; /* توسيط الحاوية وإضافة مسافة سفلية */
+            overflow: hidden;
+            border-radius: 50%; /* تحويل المربع إلى دائرة */
+            border: 4px solid var(--light-accent);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .bio-image {
+            /* ضمان أن الصورة تملأ الحاوية الدائرية */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        /* 🌟 نهاية تنسيقات الدائرة 🌟 */
+
     </style>
 </head>
 <body class="light-mode" id="scholar-profile-page"> 
