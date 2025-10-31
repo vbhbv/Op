@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsCountElement = document.getElementById('results-count'); // الميزة 36
 
     let allScholarsData = []; 
-    const SCROLLED_CLASS = 'scrolled'; // الميزة 16
+    // const SCROLLED_CLASS = 'scrolled'; // تم إزالة هذا المتغير وميزته
     const DATA_CACHE_KEY = 'archiveDataCache'; // الميزة 33
     const CACHE_DURATION = 3600000; // الميزة 33: ساعة واحدة
 
@@ -184,8 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function createScholarCard(scholar) {
         const card = document.createElement('a');
-        card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
+        // الرابط يتم بناؤه ليتوافق مع نظام مجلد pages
         card.href = `pages/${scholar.id}.html`; 
+        card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
         card.classList.add('scholar-card');
         
         // الميزة 28: تأثير الهز
@@ -278,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // يجب تعديل مسار الملف بناءً على مكان ملف JS (مثال: ../data/archive.json)
+            // المسار: يتم الخروج من مجلد scripts/ للوصول إلى data/archive.json
             const response = await fetch('../data/archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
@@ -292,6 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
              setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
+             console.error("Data loading error:", error);
         } finally {
             setLoadingState(false);
         }
@@ -303,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // تحديد أي مجموعة بيانات يجب استخدامها بناءً على معرف الصفحة
         if (document.body.id === 'arab-writers-page') {
-            dataToDisplay = data.arabWriters || [];
+            dataToDisplay = data.arabWriters || []; // يجب أن تكون المصفوفة في JSON بهذا الاسم
         } else if (document.body.id === 'arab-scientists-page') {
              dataToDisplay = data.arabScientists || [];
         } 
@@ -355,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // الميزة 12/13: زر العودة للأعلى
+    // الميزة 12/13/16: زر العودة للأعلى (مع إزالة كلاس scrolled المسبب للتداخل)
     if (backToTopButton) {
         const toggleBackToTop = () => {
              if (window.scrollY > 300) {
@@ -371,7 +373,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('scroll', () => {
-            // الميزة 16: إضافة كلاس التمرير إلى الترويسة
+            // ❌ تم إزالة الميزة 16 (إضافة كلاس التمرير/الترويسة الثابتة) لحل مشكلة التداخل في الترويسة
+            /*
             if (header) {
                 if (window.scrollY > 50) {
                     header.classList.add(SCROLLED_CLASS);
@@ -379,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     header.classList.remove(SCROLLED_CLASS);
                 }
             }
+            */
             toggleBackToTop();
         });
         toggleBackToTop(); // تشغيل عند التحميل
