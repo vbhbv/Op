@@ -33,19 +33,6 @@ function showToastNotification(message, type = 'info') {
     toast.addEventListener('click', () => toast.remove()); 
 }
 
-// الميزة 41: دالة لتحديد المسار الأساسي للمشروع على GitHub Pages
-function getBasePath() {
-    const pathSegments = window.location.pathname.split('/');
-    // إذا كان هناك اسم مستودع (عادةً ما يكون الجزء الثاني)، سنستخدمه.
-    // مثال: /Op/pages/arab_writers.html -> سنستخدم /Op
-    if (pathSegments.length > 1 && pathSegments[1] !== '' && pathSegments[1] !== 'pages' && pathSegments[1].toLowerCase() !== 'index.html') {
-        return `/${pathSegments[1]}`;
-    }
-    // العودة للمسار الفارغ في حالة النطاق المخصص أو عدم وجود اسم مستودع في المسار
-    return ''; 
-}
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // ⚙️ العناصر الأساسية (Cached Selectors)
     const body = document.body;
@@ -70,12 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // I. تحسينات الوضع الليلي/النهاري (Enhanced Mode Toggle)
     // =============================================================
 
-    // التحقق من تفضيلات النظام للمرة الأولى
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     const savedMode = localStorage.getItem('mode') || (prefersDark.matches ? 'dark-mode' : 'light-mode');
 
     function toggleMode(newMode = null) {
-        // الميزة 2: إضافة كلاس للتحول السلس
         body.classList.add('mode-transition'); 
         const currentMode = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
         const finalMode = newMode || (currentMode === 'light-mode' ? 'dark-mode' : 'light-mode');
@@ -85,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('mode', finalMode);
         updateModeIcon(finalMode);
         
-        // إزالة الكلاس بعد انتهاء التحول
         setTimeout(() => body.classList.remove('mode-transition'), 300); 
     }
 
@@ -97,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // تطبيق الوضع المحفوظ عند التحميل
     body.classList.add(savedMode);
     updateModeIcon(savedMode);
     
@@ -115,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
         const selectedEra = filterSelect ? filterSelect.value : 'all'; 
 
-        // الميزة 27: إظهار/إخفاء زر مسح البحث
         if (clearSearchButton) {
             clearSearchButton.style.display = searchTerm ? 'block' : 'none';
         }
@@ -130,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return matchesSearch && matchesEra;
         });
         
-        // الميزة 7: رسالة "لا توجد نتائج"
         if (filteredScholars.length === 0) {
              displayNoResults(scholarCardsContainer);
         } else {
@@ -140,35 +121,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (searchButton && searchBar && searchInput) {
-        // الميزة 4: فتح/إغلاق شريط البحث
         searchButton.addEventListener('click', () => {
             searchBar.classList.toggle('is-visible'); 
             if (searchBar.classList.contains('is-visible')) {
                 searchInput.focus();
                 document.addEventListener('keydown', handleEscapeKey);
-                // الميزة 5: تغيير أيقونة البحث إلى 'x' مؤقتاً
                 searchButton.querySelector('i').className = 'fas fa-times';
 
-                 // إظهار التصفية إذا كانت البيانات محملة
                 if(allScholarsData.length > 0 && filterSelect && body.id !== 'main-page') {
                     filterSelect.style.display = 'inline-block';
                 }
             } else {
                 document.removeEventListener('keydown', handleEscapeKey);
                 searchButton.querySelector('i').className = 'fas fa-search';
-                // الميزة 27: مسح البحث عند الإغلاق
                 searchInput.value = '';
                 applyFiltering(); 
             }
         });
         
-        // الميزة 39: إغلاق البحث باستخدام مفتاح Escape
         function handleEscapeKey(e) {
             if (e.key === 'Escape') {
                 searchBar.classList.remove('is-visible');
                 searchButton.querySelector('i').className = 'fas fa-search';
                 document.removeEventListener('keydown', handleEscapeKey);
-                // مسح البحث عند الإغلاق بـ Escape
                 searchInput.value = ''; 
                 applyFiltering();
             }
@@ -196,23 +171,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function createScholarCard(scholar) {
         const card = document.createElement('a');
         
-        // استخدام scholar.id مباشرة لأنه يحتوي الآن على امتداد .html
-        card.href = `pages/${scholar.id}`; 
+        // 🚨 التصحيح: يجب إضافة ".html" يدوياً لأن ID لم يعد يحتوي عليه
+        card.href = `pages/${scholar.id}.html`; 
         
         card.setAttribute('title', `انقر لعرض صفحة ${scholar.name}`); // الميزة 34
         card.classList.add('scholar-card');
         
-        // الميزة 28: تأثير الهز
         card.addEventListener('mouseover', () => card.classList.add('hover-shake')); 
         card.addEventListener('animationend', () => card.classList.remove('hover-shake'));
 
-        // الميزة 29: شارة التمييز
         const iconHtml = scholar.featured ? 
             '<span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>' : ''; 
         
         card.innerHTML = `
             <div class="scholar-image-wrapper">
-                <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../Images/placeholder.webp';"> </div>
+                <img src="../Images/${scholar.image}" alt="صورة ${scholar.name}" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../Images/placeholder.webp';">
+            </div>
             <div class="scholar-info">
                 ${iconHtml}
                 <h4 class="scholar-name">${scholar.name}</h4>
@@ -267,11 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function loadArchiveData() {
-        if (!scholarCardsContainer || body.id === 'main-page') return; // لا يتم التحميل في الصفحة الرئيسية
+        if (!scholarCardsContainer || body.id === 'main-page') return; 
 
-        setLoadingState(true); // الميزة 31
+        setLoadingState(true); 
 
-        // الميزة 33: محاولة استعادة البيانات من الذاكرة المؤقتة
         const cachedData = localStorage.getItem(DATA_CACHE_KEY);
         if (cachedData) {
             const { data, timestamp } = JSON.parse(cachedData);
@@ -287,46 +260,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => { // الميزة 20: مهلة التحميل
+            const timeoutId = setTimeout(() => { 
                 controller.abort();
                 showToastNotification("⚠️ انتهت مهلة التحميل. يرجى المحاولة لاحقاً.", 'warning');
             }, 5000); 
             
-            // 🚨 تطبيق الحل النهائي: استخدام المسار الأساسي للمستودع
-            const basePath = getBasePath();
-            const filePath = `${basePath}/data/archive.json`;
-            
-            // إذا لم يعمل المسار الجديد، نعود للمسار النسبي كخيار احتياطي
-            const finalPath = (basePath === '') ? '../data/archive.json' : filePath;
-            
-            const response = await fetch(finalPath, { signal: controller.signal });
+            // 🚨 مسار التحميل: تم افتراض ./archive.json لوجوده داخل مجلد pages/
+            const response = await fetch('./archive.json', { signal: controller.signal });
             clearTimeout(timeoutId);
             
             if (!response.ok) { 
-                 // إذا فشل المسار النهائي، سنحاول المسار النسبي كحل أخير (للتصفح المحلي)
-                 if(finalPath !== '../data/archive.json') {
-                      console.warn('فشل المسار المطلق. محاولة المسار النسبي...');
-                      const fallbackResponse = await fetch('../data/archive.json', { signal: controller.signal });
-                      if(fallbackResponse.ok) {
-                          const data = await fallbackResponse.json();
-                          localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
-                          processData(data);
-                          showToastNotification('✅ تم التحميل بالمسار الاحتياطي.', 'success');
-                          return;
-                      }
-                 }
                  throw new Error('فشل في تحميل ملف البيانات.'); 
             }
             
             const data = await response.json();
             
-            localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() })); // الميزة 33
+            localStorage.setItem(DATA_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
 
             processData(data);
             showToastNotification('✅ تم تحميل بيانات الأرشيف بنجاح.', 'success');
 
         } catch (error) {
-             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك.');
+             setLoadingState(false, 'تعذر تحميل المحتوى. يرجى التحقق من اتصالك، أو تأكد من وجود ملف archive.json في مجلد pages.');
              console.error("Data loading error:", error);
         } finally {
             setLoadingState(false);
@@ -335,44 +290,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function processData(data) {
         let dataToDisplay = [];
-        const uniqueEras = new Set(); // الميزة 21
+        const uniqueEras = new Set(); 
 
-        // تحديد أي مجموعة بيانات يجب استخدامها بناءً على معرف الصفحة
         if (document.body.id === 'arab-writers-page') {
-            dataToDisplay = data.arabWriters || []; // يجب أن تكون المصفوفة في JSON بهذا الاسم
+            dataToDisplay = data.arabWriters || []; 
         } else if (document.body.id === 'arab-scientists-page') {
              dataToDisplay = data.arabScientists || [];
         } 
-        // يمكنك إضافة شروط لصفحات أخرى هنا
 
-        // استخلاص العصور للميزة 21
         dataToDisplay.forEach(scholar => uniqueEras.add(scholar.era));
 
-        // الميزة 37: فرز البيانات أبجدياً حسب الاسم افتراضياً
         dataToDisplay.sort((a, b) => a.name.localeCompare(b.name)); 
 
         allScholarsData = dataToDisplay; 
         displayScholarCards(allScholarsData, scholarCardsContainer);
-        populateEraFilter(uniqueEras); // الميزة 23
+        populateEraFilter(uniqueEras); 
     }
     
-    function populateEraFilter(eras) { // الميزة 23 & 22
+    function populateEraFilter(eras) { 
         if (filterSelect) {
             filterSelect.innerHTML = '<option value="all">جميع العصور</option>';
             
-            Array.from(eras).sort().forEach(era => { // الميزة 22: فرز العصور
+            Array.from(eras).sort().forEach(era => { 
                 const option = document.createElement('option');
                 option.value = era;
                 option.textContent = era;
                 filterSelect.appendChild(option);
             });
             
-            // الميزة 24: إظهار القائمة المنسدلة فقط إذا كان هناك بيانات
             filterSelect.style.display = eras.size > 0 ? 'inline-block' : 'none'; 
         }
     }
 
-    // تحقق من نوع الصفحة (لتحميل البيانات فقط في صفحات الأرشيف)
     if (document.body.id && document.body.id !== 'main-page') {
          loadArchiveData(); 
     }
@@ -381,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // IV. ميزات جمالية وتقنية إضافية
     // =============================================================
     
-    // الميزة 10/11: الرابط النشط
     const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
         link.classList.remove('active-nav-link');
@@ -391,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // الميزة 12/13/16: زر العودة للأعلى (مع إزالة كود الترويسة الثابتة)
     if (backToTopButton) {
         const toggleBackToTop = () => {
              if (window.scrollY > 300) {
@@ -407,13 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('scroll', () => {
-            // ❌ تم إزالة ميزة الترويسة الثابتة نهائياً من الـ JS
             toggleBackToTop();
         });
-        toggleBackToTop(); // تشغيل عند التحميل
+        toggleBackToTop(); 
     }
     
-    // الميزة 17: التحقق من الاتصال بالإنترنت
     function checkConnectivity() {
         if (!navigator.onLine) {
             showToastNotification("⚠️ أنت غير متصل بالإنترنت. قد تكون البيانات قديمة.", 'warning'); 
@@ -425,7 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
     checkConnectivity();
 
     
-    // الميزة 14/15: مراقب التقاطع (Intersection Observer)
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -433,20 +377,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target); 
             }
         });
-    }, { threshold: 0.1 }); // يتم تشغيله بمجرد ظهور 10% من العنصر
+    }, { threshold: 0.1 }); 
 
     const observeNewCards = () => {
         document.querySelectorAll('.scholar-card').forEach(card => {
-            // التأكد من عدم مراقبته بالفعل
             if (!card.classList.contains('is-loaded')) { 
                 observer.observe(card);
             }
         });
     };
 
-    // الميزة 38: اختصار لوحة المفاتيح العالمية (CTRL + K)
     document.addEventListener('keydown', (e) => {
-        // CTRL + K لفتح/إغلاق البحث
         if (e.ctrlKey && e.key === 'k') {
             e.preventDefault(); 
             if (searchButton) {
@@ -454,21 +395,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // الميزة 39: إغلاق جميع الإشعارات بـ Shift + Escape
         if (e.shiftKey && e.key === 'Escape') {
             const toasts = document.querySelectorAll('#toast-container .toast-notification');
             toasts.forEach(toast => toast.remove());
         }
     });
     
-    // الميزة 40: تتبع النقر على زر التبديل (للتطوير)
     if (toggleButton) {
         toggleButton.addEventListener('click', () => {
              console.log('Mode Toggled', body.classList.contains('dark-mode') ? 'Dark' : 'Light');
         });
     }
     
-    // تطبيق مبدئي لبطاقات الأقسام في الصفحة الرئيسية (لتحريكها عند بدء التشغيل)
     if (document.body.id === 'main-page') {
         observeNewCards();
     }
