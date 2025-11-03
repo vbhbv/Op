@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>منى حجاج | حامية كنوز الإسكندرية الغارقة</title>
+    
+    <meta name="description" content="السرد التفصيلي لحياة الدكتورة منى حجاج، قصتها في علم الآثار الكلاسيكية، ودورها في إنقاذ التراث اليوناني والروماني في الإسكندرية.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* التنسيقات الخاصة بصفحة السيرة الذاتية (للحفاظ على التناسق والجودة) */
+        
+        .scholar-profile {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-border);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .scholar-profile {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border-color: var(--dark-border);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 20px;
+        }
+        
+        .dark-mode .profile-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .profile-header h2 {
+            font-family: var(--font-fancy); /* Scheherazade New */
+            font-size: 3em;
+            color: var(--light-accent);
+            margin-bottom: 5px;
+        }
+        
+        .dark-mode .profile-header h2 {
+            color: var(--dark-accent);
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-secondary);
+            font-family: var(--font-utility); /* Cairo */
+        }
+        
+        .dark-mode .profile-header p {
+            color: var(--dark-text);
+        }
+
+        .profile-image-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-accent);
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .profile-image-large {
+            border-color: var(--dark-accent);
+        }
+
+        /* تنسيق الأقسام التفصيلية */
+        .bio-section h3 {
+            font-family: var(--font-fancy);
+            font-size: 2em;
+            color: var(--light-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--light-accent);
+        }
+        
+        .dark-mode .bio-section h3 {
+            color: var(--dark-accent);
+            border-right-color: var(--dark-accent);
+        }
+
+        .bio-section p, .bio-section ul {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            padding-right: 15px;
+            text-align: justify;
+        }
+
+        .bio-section ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .bio-section ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 25px;
+        }
+
+        .bio-section ul li::before {
+            content: "\f00c"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--light-accent);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .bio-section ul li::before {
+            color: var(--dark-accent);
+        }
+        
+        /* تنسيق خاص للسرد الأثري */
+        .story-box {
+            background-color: #fffde7; /* لون أصفر رملي فاتح */
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-right: 6px solid #ffeb3b; /* خط أصفر ذهبي */
+            font-style: italic;
+            color: #f57f17;
+        }
+        
+        .dark-mode .story-box {
+            background-color: #3b3a29;
+            border-right-color: #fff9c4;
+            color: #fff9c4;
+        }
+    </style>
+</head>
+<body class="light-mode"> 
+
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="scholar-profile">
+            
+            <div class="profile-header">
+                
+                <img src="../images/Muna_Haggag.jpg" alt="صورة الدكتورة منى حجاج" class="profile-image-large" loading="eager" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                <h2>الدكتورة منى حجاج</h2>
+                <p>أستاذة الآثار الكلاسيكية | سيدة كنوز الإسكندرية</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>📜 طفولة في حضن التاريخ وإلهام كليوباترا</h3>
+                <div class="story-box">
+                    ولدت منى حجاج في مدينة الإسكندرية، المدينة التي تختزن تاريخاً غنياً تحت رمالها ومياهها. عاشت طفولتها محاطة بآثار الحضارة اليونانية والرومانية، وهو ما أشعل لديها شغفاً فريداً بـ **العالم الكلاسيكي**. لم تكتفِ بقراءة الأساطير، بل أرادت اكتشاف الأدلة المادية التي تؤكدها. أدركت مبكراً أن الإسكندرية ليست مجرد مدينة، بل طبقات من التاريخ تحتاج إلى من يتحدث باسمها.
+                </div>
+                <ul>
+                    <li>تخصصت في **الآثار الكلاسيكية** (اليونانية والرومانية) وحصلت على درجاتها العلمية من جامعة الإسكندرية.</li>
+                    <li>تابعت دراساتها العليا والدكتوراه في هذا التخصص النادر، لتصبح واحدة من قلائل الخبراء العرب في هذا المجال.</li>
+                    <li>انضمت إلى هيئة التدريس في جامعة الإسكندرية، وبدأت رحلتها في نقل هذا الشغف إلى الطلاب.</li>
+                </ul>
+            </div>
+            
+            <div class="bio-section">
+                <h3>🏛️ حارسة الكنوز الغارقة والمعرضة للخطر</h3>
+                <p>
+                    دور الدكتورة منى لم يكن أكاديمياً فقط، بل تحول إلى مهمة وطنية لحماية التراث المعرض للخطر، خاصة الآثار الموجودة تحت مياه البحر المتوسط.
+                </p>
+                <ul>
+                    <li>شاركت في العديد من **الحفريات الأثرية** البرية والبحرية، بما في ذلك مواقع في الإسكندرية والبحيرة، وساهمت في الكشف عن معابد وتماثيل غارقة تعود للعصر البطلمي.</li>
+                    <li>لعبت دوراً محورياً في **الدفاع عن المواقع الأثرية** المهددة بالبناء العشوائي والتوسع العمراني، حيث كانت صوت المجتمع الأثري في مواجهة التحديات الحديثة.</li>
+                    <li>هي خبيرة دولية معتمدة في **إدارة وحماية المواقع الأثرية المغمورة**، وشاركت في صياغة قوانين وطنية لحماية التراث تحت الماء.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>📢 القيادة الأثرية والتوعية المجتمعية</h3>
+                <p>
+                    تولت الدكتورة منى حجاج مناصب قيادية عديدة، مستغلة منبرها لنشر الوعي بأهمية الآثار كجزء من الهوية الوطنية.
+                </p>
+                <div class="story-box">
+                    عملت **رئيسة لجمعية الآثار بالإسكندرية**، محولة هذه المنصة إلى منارة لنشر الثقافة الأثرية بين الشباب وعامة الجمهور. كانت تنظم جولات وندوات مجانية، مؤمنة بأن الحماية الحقيقية للتراث تبدأ عندما يشعر كل مواطن بملكيته لهذا التاريخ. كما أنها صوت عربي قوي في المحافل الدولية، تدافع عن ضرورة **تدريس الآثار** بأسلوب مشوق ومبتكر لربط الأجيال الجديدة بماضيهم العظيم.
+                </div>
+                <ul>
+                    <li>لها مؤلفات عديدة عن العمارة والنحت والحياة اليومية في العصور اليونانية والرومانية.</li>
+                    <li>تُعد مستشاراً لليونسكو في قضايا التراث المهدد بالانقراض بسبب التغيرات المناخية وارتفاع منسوب سطح البحر.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>💡 درس من أعماق التاريخ</h3>
+                <blockquote style="border-right: 5px solid var(--light-secondary); padding-right: 15px; margin-top: 20px; font-style: italic; color: #555;">
+                    "الآثار ليست مجرد حجارة قديمة، إنها شهادات حية على استمرارية الحضارة الإنسانية. مهمتنا ليست فقط استخراجها، بل سرد قصتها وحمايتها للأجيال القادمة."
+                </blockquote>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
