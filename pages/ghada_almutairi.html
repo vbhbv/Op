@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>غادة المطيري | رائدة تقنية النانو وتوصيل الأدوية</title>
+    
+    <meta name="description" content="السيرة التفصيلية للدكتورة غادة المطيري، المخترعة السعودية الحاصلة على جائزة الإبداع العلمي من المعاهد الوطنية للصحة بأمريكا.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* التنسيقات الخاصة بصفحة السيرة الذاتية (للحفاظ على التناسق والجودة) */
+        
+        .scholar-profile {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-border);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .scholar-profile {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border-color: var(--dark-border);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 20px;
+        }
+        
+        .dark-mode .profile-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .profile-header h2 {
+            font-family: var(--font-fancy); /* Scheherazade New */
+            font-size: 3em;
+            color: var(--light-accent);
+            margin-bottom: 5px;
+        }
+        
+        .dark-mode .profile-header h2 {
+            color: var(--dark-accent);
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-secondary);
+            font-family: var(--font-utility); /* Cairo */
+        }
+        
+        .dark-mode .profile-header p {
+            color: var(--dark-text);
+        }
+
+        .profile-image-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-accent);
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .profile-image-large {
+            border-color: var(--dark-accent);
+        }
+
+        /* تنسيق الأقسام التفصيلية */
+        .bio-section h3 {
+            font-family: var(--font-fancy);
+            font-size: 2em;
+            color: var(--light-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--light-accent);
+        }
+        
+        .dark-mode .bio-section h3 {
+            color: var(--dark-accent);
+            border-right-color: var(--dark-accent);
+        }
+
+        .bio-section p, .bio-section ul {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-right: 15px;
+        }
+
+        .bio-section ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .bio-section ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 25px;
+        }
+
+        .bio-section ul li::before {
+            content: "\f00c"; /* أيقونة علامة صح */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--light-accent);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .bio-section ul li::before {
+            color: var(--dark-accent);
+        }
+        
+        /* تنسيق خاص لتقنية النانو */
+        .invention-highlight {
+            background-color: #e3f2fd; /* أزرق فاتح جداً */
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 5px solid #2196f3; /* أزرق متوسط */
+            font-style: italic;
+            color: #0d47a1;
+        }
+        
+        .dark-mode .invention-highlight {
+            background-color: #2b3d57;
+            border-left-color: #64b5f6;
+            color: #bbdefb;
+        }
+    </style>
+</head>
+<body class="light-mode"> 
+
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="scholar-profile">
+            
+            <div class="profile-header">
+                
+                <img src="../images/Ghada_Almutairi.jpg" alt="صورة الدكتورة غادة المطيري" class="profile-image-large" loading="eager" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                <h2>الدكتورة غادة المطيري</h2>
+                <p>مخترعة ومهندسة كيميائية | رائدة في توصيل الأدوية بالنانو</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>📜 المسيرة التعليمية والأكاديمية</h3>
+                <p>
+                    الدكتورة غادة المطيري هي أستاذة في الهندسة الصيدلية بجامعة كاليفورنيا في سان دييغو (UCSD) ومديرة مركز التميز في طب النانو وهندسة الأدوية.
+                </p>
+                <ul>
+                    <li>حصلت على شهادة البكالوريوس في الكيمياء من جامعة أوكسيدنتال في لوس أنجلوس عام 1999.</li>
+                    <li>نالت درجة الماجستير في الكيمياء ثم الدكتوراه في الكيمياء العضوية الجزئية من جامعة كاليفورنيا، ريفرسايد (UCR).</li>
+                    <li>عملت كزميلة ما بعد الدكتوراه في جامعة كاليفورنيا، بيركلي، حيث ركزت على تطوير مواد النانو الحساسة للضوء.</li>
+                </ul>
+            </div>
+            
+            <div class="bio-section">
+                <h3>🔬 الاختراع الأبرز وتقنية النانو</h3>
+                <p>
+                    يتمحور أهم اختراعات الدكتورة المطيري حول تطوير جزيئات نانوية ذكية تستجيب للضوء وتتحلل داخلياً، مما يسمح بإطلاق الدواء بدقة متناهية في المكان والزمان المناسبين داخل الجسم.
+                </p>
+                <div class="invention-highlight">
+                    <i class="fas fa-magic"></i> **الجزيئات النانوية المستجيبة للضوء:** اخترعت مادة بوليمر نانوية حساسة للضوء، تعمل على تغليف الدواء، وعند تسليط ضوء معين عليها، تتحلل المادة فوراً وتطلق الجرعة الدوائية فقط في الخلايا المريضة (مثل الخلايا السرطانية أو الخلايا الملتهبة).
+                </div>
+                <ul>
+                    <li>يهدف اختراعها إلى تقليل الآثار الجانبية للأدوية القوية (مثل العلاج الكيميائي) بشكل كبير، لأن الدواء لا يصل إلا إلى الهدف المحدد.</li>
+                    <li>تحمل العديد من براءات الاختراع الدولية في مجال النانو تكنولوجي والكيمياء.</li>
+                    <li>تعتبر رائدة في مجال الطب الدقيق (Precision Medicine).</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>🏆 الجوائز والتكريمات الدولية</h3>
+                <p>
+                    تم تكريم الدكتورة المطيري بجوائز عالمية رفيعة تقديراً لأبحاثها الرائدة والمبتكرة.
+                </p>
+                <ul>
+                    <li>حازت على **جائزة الإبداع العلمي** الكبرى من المعاهد الوطنية للصحة (NIH) في الولايات المتحدة عام 2009، وهي أعلى جائزة يمنحها هذا المعهد.</li>
+                    <li>حصلت على جائزة الزميل المميز للعلماء الشباب من الجمعية الكيميائية الأمريكية.</li>
+                    <li>أدرجت ضمن قائمة **أبرز 25 ابتكاراً** على مستوى العالم في مجال الصحة لعام 2009.</li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
