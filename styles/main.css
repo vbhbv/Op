@@ -213,7 +213,7 @@ header nav a.active-nav-link { /* الميزة 11 */
 #clear-search-btn { /* الميزة 27 */
     background: none;
     border: none;
-    color: #999;
+    color: var(--light-accent); /* 💡 تعديل اللون لضمان وضوحه على الخلفية الفاتحة */
     font-size: 1.1em;
     cursor: pointer;
     display: none;
@@ -403,10 +403,24 @@ header nav a.active-nav-link { /* الميزة 11 */
 .featured-badge { /* الميزة 29 */
     position: absolute;
     top: 5px;
-    left: 5px;
-    color: gold;
-    font-size: 1.5em;
+    right: 5px; 
+    
+    /* 💡 تعديل: إضافة خلفية واضحة ولون أيقونة واضح في الوضع الشمسي */
+    background-color: rgba(255, 255, 255, 0.85); /* خلفية بيضاء شبه شفافة */
+    color: var(--light-accent); /* لون واضح في الوضع النهاري */
+    padding: 3px 6px;
+    border-radius: 5px;
+    border: 1px solid var(--light-accent);
+
+    font-size: 1.2em;
     z-index: 5;
+}
+
+/* 💡 ضمان التباين في الوضع الليلي */
+.dark-mode .featured-badge {
+    background-color: rgba(42, 42, 42, 0.85);
+    color: var(--dark-accent);
+    border-color: var(--dark-accent);
 }
 
 /* ============================================================= */
