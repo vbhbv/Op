@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>سعاد الخطيب | مهندسة الفضاء والطيران العربية</title>
+    
+    <meta name="description" content="السرد التفصيلي لحياة الدكتورة سعاد الخطيب، قصتها في ديناميكيات الموائع وتصميم المحركات النفاثة، وإسهاماتها في مجال الطيران.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* التنسيقات الخاصة بصفحة السيرة الذاتية (للحفاظ على التناسق والجودة) */
+        
+        .scholar-profile {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-border);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .scholar-profile {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border-color: var(--dark-border);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 20px;
+        }
+        
+        .dark-mode .profile-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .profile-header h2 {
+            font-family: var(--font-fancy); /* Scheherazade New */
+            font-size: 3em;
+            color: var(--light-accent);
+            margin-bottom: 5px;
+        }
+        
+        .dark-mode .profile-header h2 {
+            color: var(--dark-accent);
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-secondary);
+            font-family: var(--font-utility); /* Cairo */
+        }
+        
+        .dark-mode .profile-header p {
+            color: var(--dark-text);
+        }
+
+        .profile-image-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-accent);
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .profile-image-large {
+            border-color: var(--dark-accent);
+        }
+
+        /* تنسيق الأقسام التفصيلية */
+        .bio-section h3 {
+            font-family: var(--font-fancy);
+            font-size: 2em;
+            color: var(--light-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--light-accent);
+        }
+        
+        .dark-mode .bio-section h3 {
+            color: var(--dark-accent);
+            border-right-color: var(--dark-accent);
+        }
+
+        .bio-section p, .bio-section ul {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            padding-right: 15px;
+            text-align: justify;
+        }
+
+        .bio-section ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .bio-section ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 25px;
+        }
+
+        .bio-section ul li::before {
+            content: "\f00c"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--light-accent);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .bio-section ul li::before {
+            color: var(--dark-accent);
+        }
+        
+        /* تنسيق خاص للسرد الفضائي */
+        .story-box {
+            background-color: #f3e5f5; /* لون بنفسجي فاتح للفضاء */
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-right: 6px solid #9c27b0; /* خط بنفسجي داكن */
+            font-style: italic;
+            color: #4a148c;
+        }
+        
+        .dark-mode .story-box {
+            background-color: #453549;
+            border-right-color: #ce93d8;
+            color: #e1bee7;
+        }
+    </style>
+</head>
+<body class="light-mode"> 
+
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="scholar-profile">
+            
+            <div class="profile-header">
+                
+                <img src="../images/Souad_Elkhatib.jpg" alt="صورة الدكتورة سعاد الخطيب" class="profile-image-large" loading="eager" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                <h2>الدكتورة سعاد الخطيب</h2>
+                <p>مهندسة الفضاء والطيران | خبيرة ديناميكيات الموائع</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>📜 عينيها على النجوم وقدميها على الأرض</h3>
+                <div class="story-box">
+                    تبدأ قصة الدكتورة سعاد بشغف مبكر بـ **هندسة الطيران**، وهو تخصص يتطلب دقة رياضية هائلة وفهماً عميقاً لقوانين الفيزياء. بينما كان الكثيرون ينظرون إلى السماء بتقدير، كانت سعاد تحلم بتصميم الآلات التي تمزق حاجز الصوت وتحمل البشر إلى ما وراء الغلاف الجوي. كان قرارها بدخول هذا المجال، الذي يهيمن عليه عادة الرجال في جميع أنحاء العالم، هو أول علامة على إصرارها على الوصول إلى القمة.
+                </div>
+                <ul>
+                    <li>تخصصت في **الهندسة الميكانيكية**، ثم أكملت دراساتها العليا في تخصص دقيق هو **هندسة الطيران والفضاء**.</li>
+                    <li>ركزت أبحاثها المبكرة على **ديناميكيات الموائع الحاسوبية (CFD)**، وهو علم حيوي لتصميم الأجنحة والمحركات التي تعمل بكفاءة عالية.</li>
+                    <li>حصلت على الدكتوراه في مجال معقد يتعلق بتحليل التدفقات الهوائية عالية السرعة حول الأجسام الطائرة.</li>
+                </ul>
+            </div>
+            
+            <div class="bio-section">
+                <h3>✈️ ريادة في تصميم المحركات النفاثة وكفاءة الأداء</h3>
+                <p>
+                    تعتبر الدكتورة سعاد من أهم الخبراء في المنطقة فيما يتعلق بتحسين أداء وكفاءة المحركات النفاثة والمركبات الفضائية.
+                </p>
+                <ul>
+                    <li>قادت أبحاثاً تهدف إلى **تقليل الضوضاء والاهتزازات** في المحركات النفاثة، مما يساهم في تصميم طائرات أكثر هدوءاً وصديقة للبيئة.</li>
+                    <li>ساهمت في تطوير نماذج حاسوبية متقدمة للتنبؤ بكيفية تصرف المواد الهيكلية للطائرات عند السرعات فوق الصوتية وتحت تأثير الحرارة الشديدة.</li>
+                    <li>عملت مع كبرى المؤسسات الصناعية والأكاديمية العالمية لتطبيق معارفها في تصميم **المراوح والمحركات النفاثة الموفرة للوقود**، وهو إنجاز اقتصادي وبيئي مهم.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>🛰️ بناء القدرات العربية في علوم الفضاء</h3>
+                <p>
+                    إلى جانب البحث والتصميم، كرست الدكتورة سعاد جهودها لبناء جيل من المهندسين العرب القادرين على قيادة مشاريع الفضاء والطيران المستقبلية في المنطقة.
+                </p>
+                <div class="story-box">
+                    عادت الدكتورة سعاد إلى المنطقة لترسخ مكانة **هندسة الطيران** في الجامعات العربية. أسست مختبرات بحثية متخصصة في ديناميكيات الغازات، ونقلت أحدث تقنيات المحاكاة الهندسية إلى طلابها. هي تؤمن بأن بناء برنامج فضائي عربي يبدأ من الأساس، وهو جيل من المهندسين القادرين على الحساب والتحليل والتصميم بدقة متناهية، واثقة في أن السماء ليست هي الحد الأقصى للطموح العربي.
+                </div>
+                <ul>
+                    <li>عضو في العديد من لجان التقييم لبرامج الفضاء والطيران الوطنية والإقليمية.</li>
+                    <li>نظمت مؤتمرات وورش عمل دولية لتبادل الخبرات بين الخبراء العرب والمؤسسات العالمية مثل **ناسا (NASA)** و**وكالة الفضاء الأوروبية (ESA)**.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>💡 رؤية من قمرة القيادة الهندسية</h3>
+                <blockquote style="border-right: 5px solid var(--light-secondary); padding-right: 15px; margin-top: 20px; font-style: italic; color: #555;">
+                    "الطيران والفضاء ليسا مجرد سرعة وارتفاع، بل هما فن تصميم القوة والدقة. عندما تصمم شيئاً ليعمل في الفضاء، فإنك تضع الإنسانية بأكملها على المحك، ويجب أن تكون دقيقاً إلى حد الكمال."
+                </blockquote>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
