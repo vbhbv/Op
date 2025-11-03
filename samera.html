@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>سميرة موسى | رائدة الفيزياء النووية المصرية</title>
+    
+    <meta name="description" content="السيرة التفصيلية للعالمة سميرة موسى، أول معيدة في كلية العلوم بجامعة فؤاد، وصاحبة شعار 'الذرة من أجل السلام'.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* التنسيقات الخاصة بصفحة السيرة الذاتية (نفس تنسيقات حياة سندي للحفاظ على التناسق) */
+        
+        .scholar-profile {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-border);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .scholar-profile {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border-color: var(--dark-border);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 20px;
+        }
+        
+        .dark-mode .profile-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .profile-header h2 {
+            font-family: var(--font-fancy); /* Scheherazade New */
+            font-size: 3em;
+            color: var(--light-accent);
+            margin-bottom: 5px;
+        }
+        
+        .dark-mode .profile-header h2 {
+            color: var(--dark-accent);
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-secondary);
+            font-family: var(--font-utility); /* Cairo */
+        }
+        
+        .dark-mode .profile-header p {
+            color: var(--dark-text);
+        }
+
+        .profile-image-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-accent);
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .profile-image-large {
+            border-color: var(--dark-accent);
+        }
+
+        /* تنسيق الأقسام التفصيلية */
+        .bio-section h3 {
+            font-family: var(--font-fancy);
+            font-size: 2em;
+            color: var(--light-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--light-accent);
+        }
+        
+        .dark-mode .bio-section h3 {
+            color: var(--dark-accent);
+            border-right-color: var(--dark-accent);
+        }
+
+        .bio-section p, .bio-section ul {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-right: 15px;
+        }
+
+        .bio-section ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .bio-section ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 25px;
+        }
+
+        .bio-section ul li::before {
+            content: "\f00c"; /* أيقونة علامة صح */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--light-accent);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .bio-section ul li::before {
+            color: var(--dark-accent);
+        }
+        
+        /* تنسيق خاص لشعار الذرة من أجل السلام */
+        .invention-highlight {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 5px solid #00bcd4;
+            font-style: italic;
+            color: #00838f;
+        }
+        
+        .dark-mode .invention-highlight {
+            background-color: #2a3e42;
+            border-left-color: #80deea;
+            color: #80deea;
+        }
+    </style>
+</head>
+<body class="light-mode"> 
+
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="scholar-profile">
+            
+            <div class="profile-header">
+                
+                <img src="../images/Samira_Moussa.jpg" alt="صورة العالمة سميرة موسى" class="profile-image-large" loading="eager" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                <h2>الدكتورة سميرة موسى</h2>
+                <p>رائدة الفيزياء النووية المصرية | الذرة من أجل السلام</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>📜 السيرة والمسار التعليمي</h3>
+                <p>
+                    ولدت سميرة موسى في عام 1917 بقرية سنبو الكبرى، بمحافظة الغربية في مصر. أظهرت نبوغاً مبكراً، حيث أنهت حفظ القرآن الكريم في سن صغيرة، واهتمت بالعلوم منذ طفولتها.
+                </p>
+                <ul>
+                    <li>تلقت تعليمها الأساسي في مدرسة القنطرة وتفوقت فيه.</li>
+                    <li>التحقت بكلية العلوم بجامعة فؤاد الأول (جامعة القاهرة حالياً)، وحصلت على بكالوريوس العلوم في الكيمياء بامتياز مع مرتبة الشرف عام 1939.</li>
+                    <li>تم تعيينها **كأول معيدة** في كلية العلوم، على الرغم من اعتراضات بعض الأساتذة الأجانب في ذلك الوقت.</li>
+                    <li>حصلت على درجة الماجستير في مجال التواصل الحراري للغازات، ثم سافرت في بعثة إلى إنجلترا وحصلت على الدكتوراه في **الإشعاع الذري** خلال 17 شهراً فقط!</li>
+                </ul>
+            </div>
+            
+            <div class="bio-section">
+                <h3>💡 الأبحاث والإنجازات النووية</h3>
+                <p>
+                    كرست سميرة موسى حياتها للعمل على تسخير الذرة لخدمة البشرية، وليس لتدميرها، وكان شعارها الدائم هو "الذرة من أجل السلام".
+                </p>
+                <div class="invention-highlight">
+                    <i class="fas fa-radiation"></i> **هدفها العلمي:** توصلت سميرة موسى إلى معادلة هامة تمكن من **تفتيت المعادن الرخيصة** مثل النحاس لاستخدامها في صناعة القنابل الذرية بدلاً من اليورانيوم، مما كان سيجعل القنبلة الذرية في متناول الجميع، لكن هدفها كان استخدام هذه التقنية في **مجالات الطب وعلاج السرطان**.
+                </div>
+                <ul>
+                    <li>أجرت أبحاثاً رائدة حول استخدام النظائر المشعة في علاج أمراض السرطان، بهدف الوصول إلى علاج غير مكلف.</li>
+                    <li>قامت بتنظيم مؤتمر الذرة من أجل السلام في لندن ودعت إليه كبار علماء الذرة حول العالم.</li>
+                    <li>زارت الولايات المتحدة عام 1951 للدراسة في منشآتها النووية السرية، وتلقت عروضاً للبقاء هناك، لكنها رفضت إيماناً بضرورة عودة العلماء إلى أوطانهم.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>💔 النهاية المأساوية</h3>
+                <p>
+                    في عام 1952، وأثناء وجودها في الولايات المتحدة، تعرضت لحادث سيارة غامض في كاليفورنيا أودى بحياتها. وحتى يومنا هذا، تظل الظروف المحيطة بوفاتها لغزاً، حيث يرجح الكثيرون أن يكون الحادث مدبراً بسبب أبحاثها النووية الحساسة والخطيرة.
+                </p>
+                <blockquote style="border-right: 5px solid var(--light-secondary); padding-right: 15px; margin-top: 20px; font-style: italic; color: #555;">
+                    "أمنيتي أن يكون علاج السرطان بالذرة متوفراً كـ 'الأسبرين'."
+                </blockquote>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
