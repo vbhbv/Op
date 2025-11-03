@@ -4,173 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>عالمات عربيات: رائدات صنعن بصمات في العلوم | الأرشيف العظيم</title>
+    <title>عالمات عربيات - سجل المؤثرين الخالدين</title>
     
-    <meta name="description" content="اكتشف صفحات كبار العالمات والمفكرات العربيات اللواتي أثرن في مسيرة العلوم والتكنولوجيا بابتكاراتهن وإنجازاتهن في شتى المجالات.">
+    <meta name="description" content="غص في بحور العلم، واستكشف عوالم الإبداع لأعظم العالمات والمخترعات في تاريخنا العربي المعاصر.">
     
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* التنسيقات الأساسية للصفحات الفهرسية (علماء/أدباء) */
-        .listing-page {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: var(--card-background);
-            border-radius: 12px;
-            box-shadow: var(--shadow-small);
-        }
-        .listing-page h2 {
+        /* التنسيقات الخاصة بالعنوان */
+        .page-header-banner h2 {
             font-family: 'Scheherazade New', serif;
-            font-size: 2.8em;
-            color: var(--main-color);
-            border-bottom: 3px solid var(--light-accent);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .listing-intro {
-            font-family: 'Amiri', serif;
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: var(--light-text);
-            text-align: justify;
-            margin-bottom: 40px;
-            padding: 0 15px;
-        }
-        .dark-mode .listing-intro {
-            color: var(--dark-text);
-        }
-
-        /* 🔬 قائمة البطاقات (الشبكة) 🔬 */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px;
-        }
-
-        .scholar-card {
-            background-color: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-tiny);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .scholar-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-        
-        /* 🖼️ تنسيق الصورة الدائرية داخل البطاقة 🖼️ */
-        .scholar-card-image {
-            width: 100px; 
-            height: 100px; 
-            border-radius: 50%; /* لجعل الصورة دائرية */
-            object-fit: cover; /* لضمان تغطية الصورة للمساحة دون تشوه */
-            margin-bottom: 15px;
-            border: 3px solid var(--secondary-color); /* إطار حول الصورة */
-            box-shadow: var(--shadow-small);
-        }
-
-        .scholar-card .icon {
-            /* إزالة تنسيق الأيقونة لأننا سنستخدم الصورة */
-            display: none; 
-        }
-
-        .scholar-card h3 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.5em;
+            font-size: 3.5em; 
             color: var(--light-accent);
-            margin-bottom: 10px;
             text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-
-        .scholar-card p {
-            font-family: 'Amiri', serif;
-            font-size: 1em;
-            color: var(--light-text);
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        /* تنسيقات الوضع الداكن */
-        .dark-mode .scholar-card {
-            background-color: var(--dark-card-background);
-            border-color: var(--dark-border-color);
-        }
-        .dark-mode .scholar-card h3 {
+        .dark-mode .page-header-banner h2 {
             color: var(--dark-accent);
         }
-        .dark-mode .scholar-card p {
+        .page-header-banner p {
+            font-size: 1.2em;
+            color: var(--light-text);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.8;
+        }
+        .dark-mode .page-header-banner p {
             color: var(--dark-text);
         }
     </style>
 </head>
-<body class="light-mode" id="arab-female-scientists-page"> 
+<body class="light-mode" id="arab-writers-page"> 
 
     <header>
         <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
         
         <nav>
             <a href="../index.html">الرئيسية</a>
-            <a href="arab_writers.html">الأدباء</a>
-            <a href="arab_scientists.html">العلماء الرجال</a>
-            <a href="#" class="active-nav-link">عالمات عربيات</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
         </nav>
         
         <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
             <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
         </div>
     </header>
     
+    <div id="search-bar" class="search-container">
+        <select id="era-filter" title="تصفية حسب العصر">
+            <option value="all">جميع العصور</option>
+            <option value="العصر العباسي">العصر العباسي</option>
+            <option value="العصر الحديث">العصر الحديث</option>
+        </select>
+        
+        <input type="text" id="search-input" placeholder="ابحث في سجلات العالمات..." />
+        
+        <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
+    </div>
+
     <main class="main-container">
-        <article class="listing-page">
-            
-            <h2>🔬 عالمات عربيات: رائدات صنعن بصمات في العلوم والتكنولوجيا</h2>
-            
-            <p class="listing-intro">
-                يحتفي هذا القسم بالإنجازات المضيئة للعالمات العربيات اللواتي تحدين الصعاب وقدمن مساهمات جوهرية في مختلف فروع المعرفة؛ من الذرة والفيزياء إلى الهندسة والطب. إنهن قصص نجاح تبعث على الفخر، وتؤكد دور المرأة العربية الريادي في مسيرة التقدم العلمي.
+        <header class="page-header-banner">
+            <h2>عالمات عربيات رائدات 🔬</h2>
+            <p>
+                غص في بحور العلم، واستكشف عوالم الإبداع لأعظم العالمات والمخترعات في تاريخنا العربي المعاصر.
             </p>
+        </header>
 
-            <section class="cards-grid">
-                
-                <a href="Sameera_moussa.html" class="scholar-card">
-                    <img src="../images/sameera_moussa.jpg" alt="صورة العالمة سميرة موسى" class="scholar-card-image">
-                    
-                    <h3>سميرة موسى</h3>
-                    <p>رائدة الأبحاث النووية المصرية، فيزياء الذرة.</p>
-                </a>
-                
-                <a href="Ghada_mutawa.html" class="scholar-card">
-                    <img src="../images/placeholder_female_scientist.jpg" alt="صورة العالمة غادة المطوع" class="scholar-card-image">
-                    
-                    <h3>غادة المطوع</h3>
-                    <p>رائدة في مجال النانو تكنولوجي (مثال افتراضي).</p>
-                </a>
-                
-                </section>
-
-        </article>
+        <section class="archive-grid" id="scholar-cards-container">
+            
+            <a href="hayat_sindi.html" title="انقر لعرض صفحة حياة سندي" class="scholar-card">
+                <div class="scholar-image-wrapper">
+                    <img src="../images/Hayat_Sindi.jpg" alt="صورة الدكتورة حياة سندي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                </div>
+                <div class="scholar-info">
+                    <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>
+                    <h4 class="scholar-name">الدكتورة حياة سندي</h4>
+                    <p class="scholar-bio-snippet">عالمة سعودية في التقنية الحيوية، وأول امرأة عربية تنضم لناسا.</p>
+                    <span class="era-tag">العصر الحديث</span>
+                </div>
+            </a>
+            
+            </section>
     </main>
     
     <footer class="page-footer">
         <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
     </footer>
 
     <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
     <div id="toast-container"></div> 
+
     <script src="../scripts/script.js"></script>
 </body>
 </html>
