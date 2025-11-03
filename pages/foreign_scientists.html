@@ -72,11 +72,21 @@
             transform: translateY(-5px);
             box-shadow: var(--shadow-medium);
         }
+        
+        /* 🖼️ تنسيق الصورة الدائرية داخل البطاقة 🖼️ */
+        .scholar-card-image {
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; /* لجعل الصورة دائرية */
+            object-fit: cover; /* لضمان تغطية الصورة للمساحة دون تشوه */
+            margin-bottom: 15px;
+            border: 3px solid var(--secondary-color); /* إطار حول الصورة */
+            box-shadow: var(--shadow-small);
+        }
 
         .scholar-card .icon {
-            font-size: 3em;
-            color: var(--main-color);
-            margin-bottom: 15px;
+            /* إزالة تنسيق الأيقونة لأننا سنستخدم الصورة */
+            display: none; 
         }
 
         .scholar-card h3 {
@@ -137,9 +147,17 @@
             <section class="cards-grid">
                 
                 <a href="Sameera_moussa.html" class="scholar-card">
-                    <span class="icon"><i class="fas fa-atom"></i></span>
+                    <img src="../images/sameera_moussa.jpg" alt="صورة العالمة سميرة موسى" class="scholar-card-image">
+                    
                     <h3>سميرة موسى</h3>
-                    <p>رائدة الأبحاث النووية المصرية.</p>
+                    <p>رائدة الأبحاث النووية المصرية، فيزياء الذرة.</p>
+                </a>
+                
+                <a href="Ghada_mutawa.html" class="scholar-card">
+                    <img src="../images/placeholder_female_scientist.jpg" alt="صورة العالمة غادة المطوع" class="scholar-card-image">
+                    
+                    <h3>غادة المطوع</h3>
+                    <p>رائدة في مجال النانو تكنولوجي (مثال افتراضي).</p>
                 </a>
                 
                 </section>
