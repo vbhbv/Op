@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>حنان مطاوع | مهندسة النانو وحارسة المياه</title>
+    
+    <meta name="description" content="السرد التفصيلي لحياة الدكتورة حنان مطاوع، وقصتها في تطوير مواد نانوية مبتكرة لتنقية وتحلية المياه بكفاءة عالية.">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* التنسيقات الخاصة بصفحة السيرة الذاتية (للحفاظ على التناسق والجودة) */
+        
+        .scholar-profile {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-border);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .scholar-profile {
+            background-color: var(--dark-card-bg);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+            border-color: var(--dark-border);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-border);
+            padding-bottom: 20px;
+        }
+        
+        .dark-mode .profile-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .profile-header h2 {
+            font-family: var(--font-fancy); /* Scheherazade New */
+            font-size: 3em;
+            color: var(--light-accent);
+            margin-bottom: 5px;
+        }
+        
+        .dark-mode .profile-header h2 {
+            color: var(--dark-accent);
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: var(--light-secondary);
+            font-family: var(--font-utility); /* Cairo */
+        }
+        
+        .dark-mode .profile-header p {
+            color: var(--dark-text);
+        }
+
+        .profile-image-large {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-accent);
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .profile-image-large {
+            border-color: var(--dark-accent);
+        }
+
+        /* تنسيق الأقسام التفصيلية */
+        .bio-section h3 {
+            font-family: var(--font-fancy);
+            font-size: 2em;
+            color: var(--light-secondary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--light-accent);
+        }
+        
+        .dark-mode .bio-section h3 {
+            color: var(--dark-accent);
+            border-right-color: var(--dark-accent);
+        }
+
+        .bio-section p, .bio-section ul {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            padding-right: 15px;
+            text-align: justify;
+        }
+
+        .bio-section ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .bio-section ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 25px;
+        }
+
+        .bio-section ul li::before {
+            content: "\f00c"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--light-accent);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .bio-section ul li::before {
+            color: var(--dark-accent);
+        }
+        
+        /* تنسيق خاص للسرد التقني البيئي */
+        .story-box {
+            background-color: #e1f5fe; /* لون سماوي فاتح للمياه */
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-right: 6px solid #03a9f4; /* خط أزرق للتقنية */
+            font-style: italic;
+            color: #01579b;
+        }
+        
+        .dark-mode .story-box {
+            background-color: #1a3c57;
+            border-right-color: #81d4fa;
+            color: #b3e5fc;
+        }
+    </style>
+</head>
+<body class="light-mode"> 
+
+    <header>
+        <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
+        
+        <nav>
+            <a href="../index.html">الرئيسية</a>
+            <a href="arab_writers.html">الأدباء</a> 
+            <a href="arab_scientists.html">العلماء</a>
+        </nav>
+        
+        <div class="nav-controls">
+            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
+            <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="scholar-profile">
+            
+            <div class="profile-header">
+                
+                <img src="../images/Hanan_Matawie.jpg" alt="صورة الدكتورة حنان مطاوع" class="profile-image-large" loading="eager" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                <h2>الدكتورة حنان مطاوع</h2>
+                <p>رائدة تكنولوجيا النانو | مهندسة حلول ندرة المياه</p>
+            </div>
+            
+            <div class="bio-section">
+                <h3>📜 البداية: تحدي ندرة المياه وحجم النانو</h3>
+                <div class="story-box">
+                    ولدت الدكتورة حنان مطاوع في مصر، وفي بلد يعتمد بشكل كبير على نهر واحد، أدركت مبكراً أن **أزمة المياه** هي تحدٍ وجودي. لم تكتفِ بدراسة المشكلة، بل قررت مواجهتها بأدوات المستقبل: **تكنولوجيا النانو**. كان قرارها التخصص في هذا المجال الدقيق، حيث تُقاس المواد بأجزاء من المليار من المتر، هو بداية رحلة البحث عن مواد سحرية يمكنها تنقية المياه بكفاءة غير مسبوقة.
+                </div>
+                <ul>
+                    <li>تخصصت في **الكيمياء وهندسة المواد** في مرحلتها الجامعية، مسلحةً نفسها بالأسس اللازمة للتعامل مع المادة على المستوى الذري.</li>
+                    <li>تابعت دراساتها العليا في جامعات أوروبية، حيث تفرغت لأبحاث تكنولوجيا النانو وتطبيقاتها في **معالجة المياه**.</li>
+                    <li>تدرجت في مناصب أكاديمية وبحثية، لتصبح أستاذة رائدة ومحوراً لأبحاث المواد النانوية في المنطقة.</li>
+                </ul>
+            </div>
+            
+            <div class="bio-section">
+                <h3>💧 الابتكار النانوي: مرشحات بحجم الذرة</h3>
+                <p>
+                    أبرز إنجازات الدكتورة حنان يدور حول تطوير أغشية ومواد نانوية يمكنها أن تفعل ما تعجز عنه المرشحات التقليدية: إزالة أصغر الملوثات وأخطرها.
+                </p>
+                <ul>
+                    <li>نجحت في تطوير **أغشية نانوية رخيصة الثمن** وفعالة للغاية، يمكنها إزالة أيونات المعادن الثقيلة (مثل الزئبق والرصاص) والمواد الكيميائية المعقدة من المياه الملوثة.</li>
+                    <li>لها براءات اختراع في استخدام **مركبات نانوية ذكية** لتعقيم المياه، حيث تعمل هذه الجزيئات كـ"مصائد" بكتيرية وفيروسية، مما يقلل الحاجة إلى التعقيم الكيميائي المكلف والضار أحياناً.</li>
+                    <li>ركزت أبحاثها أيضاً على **تحلية المياه** باستخدام تقنيات نانوية تستهلك طاقة أقل بكثير من الطرق التقليدية، ما يفتح آفاقاً جديدة لحلول مستدامة في المناطق الصحراوية.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>🛠️ التطبيق العملي وبناء الكوادر</h3>
+                <p>
+                    آمنت الدكتورة حنان بأن العلم يجب أن يخرج من المختبر إلى الميدان. لذا، كرست جهودها لتطبيق أبحاثها في مشاريع واقعية تخدم المجتمع.
+                </p>
+                <div class="story-box">
+                    عملت الدكتورة حنان على تحويل اختراعاتها من رسومات ومفاهيم إلى **وحدات تنقية مياه عملية** يمكن تركيبها في المجتمعات الريفية والنائية. قامت بتدريب فرق عمل محلية على تصنيع واستخدام هذه المرشحات النانوية، مما يضمن استمرارية نقل التكنولوجيا. كما أنها صوت مؤثر في المؤتمرات الدولية، حيث تدافع عن ضرورة **تخصيص البحث العلمي** لمواجهة التحديات المحلية مثل ندرة المياه وتلوثها.
+                </div>
+                <ul>
+                    <li>أشرفت على العديد من رسائل الدكتوراه والماجستير التي تخدم قضايا الأمن المائي.</li>
+                    <li>عضو فعال في لجان تقييم المشاريع التنموية والبيئية على المستوى الإقليمي والدولي.</li>
+                </ul>
+            </div>
+
+            <div class="bio-section">
+                <h3>💡 رؤية نحو مستقبل مائي آمن</h3>
+                <blockquote style="border-right: 5px solid var(--light-secondary); padding-right: 15px; margin-top: 20px; font-style: italic; color: #555;">
+                    "أعظم قوة في العلم تكمن في قدرته على تحويل أكبر المشاكل (مثل ندرة المياه) إلى حلول أنيقة على أصغر المقاييس (النانو). النانو ليس مجرد علم؛ إنه التزام نحو مستقبل أكثر استدامة."
+                </blockquote>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
+        <p>
+            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
+        </p>
+        <p style="margin-top: 10px;">
+            تواصل معنا: 
+            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
+                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
+            </a>
+        </p>
+    </footer>
+
+    <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
+
+    <div id="toast-container"></div> 
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
