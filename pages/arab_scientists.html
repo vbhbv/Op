@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>علماء ومفكرون عرب - سجل المؤثرين الخالدين</title>
+    <title>عالمات عربيات: رائدات صنعن بصمات في العلوم | الأرشيف العظيم</title>
     
-    <meta name="description" content="استكشف إرث العبقرية العلمية والفكرية لأعظم العلماء والمفكرين العرب والمسلمين في التاريخ.">
+    <meta name="description" content="اكتشف صفحات كبار العالمات والمفكرات العربيات اللواتي أثرن في مسيرة العلوم والتكنولوجيا بابتكاراتهن وإنجازاتهن في شتى المجالات.">
     
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* التنسيقات الخاصة بالعنوان (لتطابق ملف الأدباء) */
+        /* التنسيقات الأساسية للصفحات الفهرسية (علماء/أدباء) */
         .page-header-banner h2 {
             font-family: 'Scheherazade New', serif;
             font-size: 3.5em; 
@@ -36,8 +36,8 @@
         .dark-mode .page-header-banner p {
             color: var(--dark-text);
         }
-
-        /* 🚨 تعديلات CSS لجعل الصورة تأخذ حجم إطار مربع 🚨 */
+        
+        /* 🚨 تنسيقات الصورة المربعة (من ملف العلماء) 🚨 */
         .scholar-image-wrapper {
             width: 100%;             /* يملأ عرض البطاقة */
             padding-top: 100%;       /* يجعل الارتفاع مساوياً للعرض (1:1 Aspect Ratio) */
@@ -45,7 +45,6 @@
             overflow: hidden;        /* لإخفاء أي جزء زائد من الصورة */
             border-bottom: 1px solid var(--border-color); /* فصل خفيف عن النص */
         }
-
         .scholar-image {
             position: absolute;
             top: 0;
@@ -55,556 +54,79 @@
             object-fit: cover; /* يضمن تغطية الصورة للمربع دون تشويه */
             transition: transform 0.3s ease;
         }
-        /* نهاية تعديلات الإطار المربع */
+        /* نهاية تنسيقات الإطار المربع */
+        
+        /* تنسيق الشبكة والبطاقات (للتوافق مع CSS العام في main.css) */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px; /* لضمان عدم تجاوز العرض في الأجهزة الكبيرة */
+            margin: 0 auto;
+        }
     </style>
 </head>
-<body class="light-mode" id="arab-scientists-page"> 
+<body class="light-mode" id="arab-female-scientists-page"> 
 
     <header>
         <h1 class="logo-title">سجل المؤثرين الخالدين</h1>
         
         <nav>
             <a href="../index.html">الرئيسية</a>
-            <a href="arab_writers.html">الأدباء</a> 
-            <a href="arab_scientists.html">العلماء</a> </nav>
+            <a href="arab_writers.html">الأدباء</a>
+            <a href="arab_scientists.html">العلماء الرجال</a>
+            <a href="#" class="active-nav-link">عالمات عربيات</a>
+        </nav>
         
         <div class="nav-controls">
-            <button id="search-btn" class="nav-icon" title="بحث (Ctrl+K)"><i class="fas fa-search"></i></button>
             <button id="mode-toggle" class="nav-icon mode-toggle-btn" title="تبديل الوضع"><i class="fas fa-moon"></i></button>
         </div>
     </header>
     
-    <div id="search-bar" class="search-container">
-        <select id="era-filter" title="تصفية حسب العصر">
-            <option value="all">جميع العصور</option>
-            <option value="العصر العباسي">العصر العباسي (العصر الذهبي)</option>
-            <option value="الأندلس والمغرب">الأندلس والمغرب</option>
-            <option value="العصر الحديث">العصر الحديث والمعاصر</option>
-        </select>
-        
-        <input type="text" id="search-input" placeholder="ابحث في سجلات العلماء..." />
-        
-        <button id="clear-search-btn" title="مسح البحث"><i class="fas fa-times"></i></button>
-    </div>
-
     <main class="main-container">
         <header class="page-header-banner">
-            <h2>علماء ومفكرون عرب (35 شخصية)</h2>
+            <h2>🔬 عالمات عربيات: رائدات صنعن بصمات في العلوم</h2>
             <p>
-                استكشف إرث العبقرية العلمية والفكرية، واكتشف العقول التي وضعت أسس الرياضيات، والطب، والفلك، والكيمياء للعالم الحديث.
+                يحتفي هذا القسم بالإنجازات المضيئة للعالمات العربيات اللواتي تحدين الصعاب وقدمن مساهمات جوهرية في مختلف فروع المعرفة؛ من الذرة والفيزياء إلى الهندسة والطب.
             </p>
         </header>
-        
+
         <section class="archive-grid" id="scholar-cards-container">
             
-            <a href="ibn_sina.html" title="انقر لعرض سيرة ابن سينا" class="scholar-card" data-era="العصر العباسي">
+            <a href="Sameera_moussa.html" title="انقر لعرض سيرة سميرة موسى" class="scholar-card" data-era="العصر الحديث">
                 <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_sina.jpg" alt="صورة ابن سينا" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                    <img src="../images/sameera_moussa.jpg" alt="صورة سميرة موسى" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
                 </div>
                 <div class="scholar-info">
                     <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>
-                    <h4 class="scholar-name">ابن سينا</h4>
-                    <p class="scholar-bio-snippet">أعظم أطباء عصره ومؤلف كتاب 'القانون في الطب'.</p>
-                    <span class="era-tag">العصر العباسي</span>
+                    <h4 class="scholar-name">سميرة موسى</h4>
+                    <p class="scholar-bio-snippet">أول عالمة ذرة مصرية وعربية، رائدة في الأبحاث النووية السلمية.</p>
+                    <span class="era-tag">العصر الحديث</span>
                 </div>
             </a>
+            
+            <a href="Hayat_sindi.html" title="انقر لعرض سيرة حياة سندي" class="scholar-card" data-era="العصر الحديث">
+                <div class="scholar-image-wrapper">
+                    <img src="../images/hayat_sindi.jpg" alt="صورة حياة سندي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
+                </div>
+                <div class="scholar-info">
+                    <h4 class="scholar-name">حياة سندي</h4>
+                    <p class="scholar-bio-snippet">عالمة سعودية في مجال التكنولوجيا الحيوية، وأول امرأة عربية في ناسا.</p>
+                    <span class="era-tag">العصر الحديث</span>
+                </div>
+            </a>
+            
+            </section>
 
-            <a href="al_khwarizmi.html" title="انقر لعرض سيرة الخوارزمي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_khwarizmi.jpg" alt="صورة الخوارزمي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محمد بن موسى الخوارزمي</h4>
-                    <p class="scholar-bio-snippet">مؤسس علم الجبر، الذي اشتُق منه مصطلح الخوارزميات.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="jaber_hayyan.html" title="انقر لعرض سيرة جابر بن حيان" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/jaber_hayyan.jpg" alt="صورة جابر بن حيان" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">جابر بن حيان</h4>
-                    <p class="scholar-bio-snippet">أبو الكيمياء، ومكتشف حمض الكبريتيك والنيتريك.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-
-            <a href="ibn_alhaytham.html" title="انقر لعرض سيرة ابن الهيثم" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_alhaytham.jpg" alt="صورة ابن الهيثم" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">الحسن بن الهيثم</h4>
-                    <p class="scholar-bio-snippet">مؤسس علم البصريات الحديث ومكتشف مبدأ الغرفة المظلمة.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="al_razi.html" title="انقر لعرض سيرة الرازي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_razi.jpg" alt="صورة الرازي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو بكر الرازي</h4>
-                    <p class="scholar-bio-snippet">طبيب وفيلسوف، صاحب نظرية التفريق بين الجدري والحصبة.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="al_biruni.html" title="انقر لعرض سيرة البيروني" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_biruni.jpg" alt="صورة البيروني" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو الريحان البيروني</h4>
-                    <p class="scholar-bio-snippet">أول من قال بدوران الأرض حول محورها، وبدأ علم الجيولوجيا.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="ibn_rushd.html" title="انقر لعرض سيرة ابن رشد" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_rushd.jpg" alt="صورة ابن رشد" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ابن رشد</h4>
-                    <p class="scholar-bio-snippet">فيلسوف وقاضٍ أندلسي، أعاد إحياء فكر أرسطو.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="ibn_khaldoun.html" title="انقر لعرض سيرة ابن خلدون" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_khaldoun.jpg" alt="صورة ابن خلدون" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>
-                    <h4 class="scholar-name">ابن خلدون</h4>
-                    <p class="scholar-bio-snippet">مؤسس علم الاجتماع (العمران البشري) ومؤلف "المقدمة".</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="al_zahrawi.html" title="انقر لعرض سيرة الزهراوي" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_zahrawi.jpg" alt="صورة الزهراوي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو القاسم الزهراوي</h4>
-                    <p class="scholar-bio-snippet">أبو الجراحة الحديثة ومخترع العديد من الآلات الجراحية.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="al_kindi.html" title="انقر لعرض سيرة الكندي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_kindi.jpg" alt="صورة الكندي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو يوسف الكندي</h4>
-                    <p class="scholar-bio-snippet">فيلسوف العرب، ورائد علم التعمية (فك التشفير).</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-
-            <a href="al_mawardi.html" title="انقر لعرض سيرة الماوردي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_mawardi.jpg" alt="صورة الماوردي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">علي بن محمد الماوردِي</h4>
-                    <p class="scholar-bio-snippet">فقيه وكاتب، صاحب كتاب 'الأحكام السلطانية'.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="ibn_alnafis.html" title="انقر لعرض سيرة ابن النفيس" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_alnafis.jpg" alt="صورة ابن النفيس" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ابن النفيس</h4>
-                    <p class="scholar-bio-snippet">أول من اكتشف الدورة الدموية الصغرى.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="al_fazari.html" title="انقر لعرض سيرة الفزاري" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_fazari.jpg" alt="صورة الفزاري" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">إبراهيم الفزاري</h4>
-                    <p class="scholar-bio-snippet">فلكي ومصمم أول أسطرلاب في العالم الإسلامي.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-
-            <a href="ibn_albaitar.html" title="انقر لعرض سيرة ابن البيطار" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_albaitar.jpg" alt="صورة ابن البيطار" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ابن البيطار</h4>
-                    <p class="scholar-bio-snippet">أعظم عالم نباتات وصيدلي في العصور الوسطى.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-             <a href="maryam_astrolabi.html" title="انقر لعرض سيرة مريم الإسطرلابي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/maryam_astrolabi.jpg" alt="صورة مريم الإسطرلابي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">مريم الإسطرلابي</h4>
-                    <p class="scholar-bio-snippet">عالمة فلك ومهندسة أسهمت في تطوير الأسطرلابات.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-             <a href="tawfiq_alhakim.html" title="انقر لعرض سيرة توفيق الحكيم" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/tawfiq_alhakim.jpg" alt="صورة توفيق الحكيم" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">توفيق الحكيم</h4>
-                    <p class="scholar-bio-snippet">رائد المسرح الذهني وعميد الأدب العربي الحديث.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-
-            <a href="ahmed_zewail.html" title="انقر لعرض سيرة أحمد زويل" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ahmed_zewail.jpg" alt="صورة أحمد زويل" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                     <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>
-                    <h4 class="scholar-name">أحمد زويل</h4>
-                    <p class="scholar-bio-snippet">حائز على جائزة نوبل في الكيمياء لاكتشافه الفيمتو ثانية.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="mostafa_musharafa.html" title="انقر لعرض سيرة مصطفى مشرفة" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/mostafa_musharafa.jpg" alt="صورة مصطفى مشرفة" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">مصطفى مشرفة</h4>
-                    <p class="scholar-bio-snippet">أحد أبرز علماء الفيزياء النظرية في القرن العشرين.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="naguib_mahfouz.html" title="انقر لعرض سيرة نجيب محفوظ" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/naguib_mahfouz.jpg" alt="صورة نجيب محفوظ" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">نجيب محفوظ</h4>
-                    <p class="scholar-bio-snippet">روائي عربي حائز على نوبل، ومؤلف 'الثلاثية'.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="al_battani.html" title="انقر لعرض سيرة البتاني" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_battani.jpg" alt="صورة البتاني" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو عبد الله البتاني</h4>
-                    <p class="scholar-bio-snippet">فلكي ورياضياتي أدخل مفاهيم الجيب وجيب التمام إلى الفلك.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-
-
-            <a href="al_farabi.html" title="انقر لعرض سيرة الفارابي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_farabi.jpg" alt="صورة الفارابي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">الفارابي</h4>
-                    <p class="scholar-bio-snippet">المعلم الثاني بعد أرسطو، وفيلسوف منطقي وموسيقي.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="ibn_tufail.html" title="انقر لعرض سيرة ابن طفيل" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_tufail.jpg" alt="صورة ابن طفيل" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ابن طفيل</h4>
-                    <p class="scholar-bio-snippet">فيلسوف وقاضٍ أندلسي، صاحب قصة 'حي بن يقظان'.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="al_jazari.html" title="انقر لعرض سيرة الجزري" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_jazari.jpg" alt="صورة الجزري" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">بديع الزمان الجزري</h4>
-                    <p class="scholar-bio-snippet">أبو الهندسة الميكانيكية ومخترع الروبوتات.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            
-            <a href="al_maqrizi.html" title="انقر لعرض سيرة المقريزي" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_maqrizi.jpg" alt="صورة المقريزي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">تقي الدين المقريزي</h4>
-                    <p class="scholar-bio-snippet">مؤرخ واقتصادي، أشهر من كتب عن تاريخ مصر.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="ibn_al_awam.html" title="انقر لعرض سيرة ابن العوام" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_al_awam.jpg" alt="صورة ابن العوام" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ابن العوام الإشبيلي</h4>
-                    <p class="scholar-bio-snippet">عالم زراعة أندلسي، صاحب كتاب 'الفلاحة'.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            
-            <a href="al_farghani.html" title="انقر لعرض سيرة الفرغاني" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_farghani.jpg" alt="صورة الفرغاني" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أحمد بن محمد الفرغاني</h4>
-                    <p class="scholar-bio-snippet">فلكي ومهندس أسهم في قياس محيط الأرض وبناء مقياس النيل.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="al_idrisi.html" title="انقر لعرض سيرة الإدريسي" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_idrisi.jpg" alt="صورة الإدريسي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">الشريف الإدريسي</h4>
-                    <p class="scholar-bio-snippet">أحد أعظم الجغرافيين ورسامي الخرائط في التاريخ.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            
-
-            
-            <a href="rashid_rida.html" title="انقر لعرض سيرة رشيد رضا" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/rashid_rida.jpg" alt="صورة محمد رشيد رضا" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محمد رشيد رضا</h4>
-                    <p class="scholar-bio-snippet">مفكر إسلامي وداعية إصلاح، صاحب مجلة 'المنار'.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="abdelrahman_elgabarti.html" title="انقر لعرض سيرة الجبرتي" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/abdelrahman_elgabarti.jpg" alt="صورة عبد الرحمن الجبرتي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">عبد الرحمن الجبرتي</h4>
-                    <p class="scholar-bio-snippet">أبرز مؤرخي مصر في نهاية العصر المملوكي وبداية الحديث.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="taha_hussein.html" title="انقر لعرض سيرة طه حسين" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/taha_hussein.jpg" alt="صورة طه حسين" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-star"></i></span>
-                    <h4 class="scholar-name">طه حسين</h4>
-                    <p class="scholar-bio-snippet">عميد الأدب العربي وناقد، صاحب كتاب 'في الشعر الجاهلي'.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-
-            <a href="farouk_elbaz.html" title="انقر لعرض سيرة فاروق الباز" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/farouk_elbaz.jpg" alt="صورة فاروق الباز" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">فاروق الباز</h4>
-                    <p class="scholar-bio-snippet">عالم جيولوجيا مصري أمريكي، عمل في وكالة ناسا.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="magdi_yacoub.html" title="انقر لعرض سيرة مجدي يعقوب" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/magdi_yacoub.jpg" alt="صورة مجدي يعقوب" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <span class="featured-badge" title="شخصية مميزة"><i class="fas fa-heart"></i></span>
-                    <h4 class="scholar-name">مجدي يعقوب</h4>
-                    <p class="scholar-bio-snippet">جراح قلب عالمي، رائد في جراحات القلب وزرعه.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="salem_masalmeh.html" title="انقر لعرض سيرة سالم مسالمة" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/salem_masalmeh.jpg" alt="صورة سالم مسالمة" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">سالم مسالمة</h4>
-                    <p class="scholar-bio-snippet">مهندس إلكترونيات، أسهم في تطوير أول حاسوب عملاق.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="rania_al_mashat.html" title="انقر لعرض سيرة رانيا المشاط" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/rania_al_mashat.jpg" alt="صورة رانيا المشاط" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">رانيا المشاط</h4>
-                    <p class="scholar-bio-snippet">اقتصادية بارزة وشخصية مؤثرة في السياسات التنموية.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-
-            
-            <a href="al_mutawalli.html" title="انقر لعرض سيرة المتولي" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_mutawalli.jpg" alt="صورة المتولي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">المتولي (أبو القاسم)</h4>
-                    <p class="scholar-bio-snippet">عالم رياضيات وفلكي، أسهم في تطوير الزيج الفلكي.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="ibn_al_khatib.html" title="انقر لعرض سيرة ابن الخطيب" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_al_khatib.jpg" alt="صورة ابن الخطيب" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">لسان الدين ابن الخطيب</h4>
-                    <p class="scholar-bio-snippet">مؤرخ وطبيب أندلسي، أول من وصف العدوى بالطاعون.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-            
-            <a href="al_harrani.html" title="انقر لعرض سيرة البتاني" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_harrani.jpg" alt="صورة البتاني" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">ثابت بن قرة الحراني</h4>
-                    <p class="scholar-bio-snippet">رياضياتي وفلكي، أسس لحساب التفاضل والتكامل.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="al_khazen.html" title="انقر لعرض سيرة الخازن" class="scholar-card" data-era="العصر العباسي">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/al_khazen.jpg" alt="صورة الخازن" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">أبو الفتح الخازن</h4>
-                    <p class="scholar-bio-snippet">فيزيائي ومهندس، أسهم في الموازين والأثقال.</p>
-                    <span class="era-tag">العصر العباسي</span>
-                </div>
-            </a>
-            
-            <a href="ibn_al_arabi.html" title="انقر لعرض سيرة ابن العربي" class="scholar-card" data-era="الأندلس والمغرب">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/ibn_al_arabi.jpg" alt="صورة ابن العربي" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محيي الدين ابن العربي</h4>
-                    <p class="scholar-bio-snippet">فيلسوف وصوفي، صاحب نظرية 'وحدة الوجود'.</p>
-                    <span class="era-tag">الأندلس والمغرب</span>
-                </div>
-            </a>
-
-            <a href="mohamed_shaltout.html" title="انقر لعرض سيرة محمد شلتوت" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/mohamed_shaltout.jpg" alt="صورة محمد شلتوت" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محمد شلتوت</h4>
-                    <p class="scholar-bio-snippet">شيخ الأزهر، مصلح ديني وفكري في القرن العشرين.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="abdullah_al_naeem.html" title="انقر لعرض سيرة عبد الله النعيم" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/abdullah_al_naeem.jpg" alt="صورة عبد الله النعيم" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">عبد الله أحمد النعيم</h4>
-                    <p class="scholar-bio-snippet">مفكر سوداني، رائد في مجال حقوق الإنسان والتفسير.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="mohamed_arkoun.html" title="انقر لعرض سيرة محمد أركون" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/mohamed_arkoun.jpg" alt="صورة محمد أركون" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">محمد أركون</h4>
-                    <p class="scholar-bio-snippet">مفكر جزائري، رائد في مجال نقد العقل الإسلامي.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-            <a href="zakaria_abdelaziz.html" title="انقر لعرض سيرة زكريا عبد العزيز" class="scholar-card" data-era="العصر الحديث">
-                <div class="scholar-image-wrapper">
-                    <img src="../images/zakaria_abdelaziz.jpg" alt="صورة زكريا عبد العزيز" class="scholar-image" loading="lazy" onerror="this.onerror=null; this.src='../images/placeholder.webp';">
-                </div>
-                <div class="scholar-info">
-                    <h4 class="scholar-name">زكريا عبد العزيز</h4>
-                    <p class="scholar-bio-snippet">فقيه وقانوني مصري، أسهم في تطوير القانون الجنائي.</p>
-                    <span class="era-tag">العصر الحديث</span>
-                </div>
-            </a>
-            
-        </section>
     </main>
     
     <footer class="page-footer">
         <p>الأرشيف العظيم | مشروع لنشر الثقافة والمعرفة.</p>
-        <p>
-            هذا المشروع منشور بواسطة مجول شعلان، تكريساً لنشر الثقافة وتسهيل الوصول إليها.
-        </p>
-        <p style="margin-top: 10px;">
-            تواصل معنا: 
-            <a href="https://t.me/iiollr" target="_blank" style="color: inherit; margin-left: 10px;">
-                <i class="fab fa-telegram"></i> Telegram
-            </a>
-            <a href="mailto:IYWUIRAQ@gmail.com" style="color: inherit; margin-left: 10px;">
-                <i class="fas fa-envelope"></i> IYWUIRAQ@gmail.com
-            </a>
-        </p>
     </footer>
 
     <a href="#" id="back-to-top" title="العودة للأعلى"><i class="fas fa-arrow-up"></i></a>
-
     <div id="toast-container"></div> 
-
     <script src="../scripts/script.js"></script>
 </body>
 </html>
